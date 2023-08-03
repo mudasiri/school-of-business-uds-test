@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  data-layout="vertical"
+  data-topbar="light"
+  data-sidebar="dark"
+  data-sidebar-size="lg"
+  data-sidebar-image="none"
+  data-preloader="disable"
+>
+  <%- include('../partials/head.ejs') %>
+
+  <body>
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+      <%- include('../partials/topbar.ejs') %>
+
+    
+      <!-- ========== App Menu ========== -->
+      <%- include('../partials/sidebar.ejs') %>
+      <!-- Left Sidebar End -->
+      <!-- Vertical Overlay-->
+      <div class="vertical-overlay"></div>
+
+      <!-- ============================================================== -->
+      <!-- Start right Content here -->
+      <!-- ============================================================== -->
+      <div class="main-content">
+        <div class="page-content">
+          <div class="container-fluid">
+            <div class="profile-foreground position-relative mx-n4 mt-n4">
+              <div class="profile-wid-bg">
+                <img
+                  src="<%= lecturer.coverPic.replace('public','') %>"
+                  alt=""
+                  class="profile-wid-img"
+                />
+              </div>
+            </div>
+            <div class="pt-4 mb-4 mb-lg-3 pb-lg-4 profile-wrapper">
+              <div class="row g-4">
+                <div class="col-auto">
+                  <div class="avatar-lg">
+                    <img
+                      src="<%= lecturer.pic.replace('public','') %>"
+                      alt="user-img"
+                      class="img-thumbnail rounded-circle"
+                    />
+                  </div>
+                </div>
+                <!--end col-->
+                <div class="col">
+                  <div class="p-2">
+                    <h3 class="text-white mb-1">
+                      <%= lecturer.title %> <%= lecturer.firstName %> <%= lecturer.lastName %>
+                    </h3>
+                    <p class="text-white-75">
+                      Department of <%= lecturer.department %>
+                    </p>
+                    <div class="hstack text-white-50 gap-1">
+                      <div class="me-2">
+                        <i
+                          class="ri-map-pin-user-line me-1 text-white-75 fs-16 align-middle"
+                        ></i
+                        >UDS School of Business
+                      </div>
+                      <!-- <div>
+                                            <i class="ri-building-line me-1 text-white-75 fs-16 align-middle"></i>UDS Business School
+                                        </div> -->
+                    </div>
+                  </div>
+                </div>
+                <!--end col-->
+                <div class="col-12 col-lg-auto order-last order-lg-0">
+                  <div class="row text text-white-50 text-center">
+                    <div class="col-lg-6 col-4">
+                      <div class="p-2">
+                        <h4 class="text-white mb-1">756</h4>
+                        <p class="fs-14 mb-0">Publications</p>
+                      </div>
+                    </div>
+                    <div class="col-lg-6 col-4">
+                      <div class="p-2">
+                        <h4 class="text-white mb-1">11K</h4>
+                        <p class="fs-14 mb-0">Citations</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--end col-->
+              </div>
+              <!--end row-->
+            </div>
+
+            <div class="row">
+              <div class="col-lg-12">
+                <div>
+                  <div class="d-flex profile-wrapper">
+                    <!-- Nav tabs -->
+                    <ul
+                      class="nav nav-pills animation-nav profile-nav gap-2 gap-lg-3 flex-grow-1"
+                      role="tablist"
+                    >
+                      <li class="nav-item" role="presentation">
+                        <a
+                          class="nav-link fs-14 active"
+                          data-bs-toggle="tab"
+                          href="#profile-tab"
+                          role="tab"
+                          aria-selected="true"
+                        >
+                          <i
+                            class="ri-airplay-fill d-inline-block d-md-none"
+                          ></i>
+                          <span class="d-none d-md-inline-block">Profile</span>
+                        </a>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <a
+                          class="nav-link fs-14"
+                          data-bs-toggle="tab"
+                          href="#research-work-tab"
+                          role="tab"
+                          aria-selected="false"
+                          tabindex="-1"
+                        >
+                          <i
+                            class="ri-list-unordered d-inline-block d-md-none"
+                          ></i>
+                          <span class="d-none d-md-inline-block"
+                            >Research Work</span
+                          >
+                        </a>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <a
+                          class="nav-link fs-14"
+                          data-bs-toggle="tab"
+                          href="#document-tab"
+                          role="tab"
+                          aria-selected="false"
+                          tabindex="-1"
+                        >
+                          <i
+                            class="ri-price-tag-line d-inline-block d-md-none"
+                          ></i>
+                          <span class="d-none d-md-inline-block"
+                            >Documents</span
+                          >
+                        </a>
+                      </li>
+                    </ul>
+                    <div class="flex-shrink-0">
+                      <a href="/update-lecturer-profile/<%= lecturer._id %>" class="btn btn-success"
+                        ><i class="ri-edit-box-line align-bottom"></i> Edit
+                        Profile</a
+                      >
+                    </div>
+                  </div>
+                  <!-- Tab panes -->
+                  <div class="tab-content pt-4 text-muted">
+                    <div
+                      class="tab-pane active"
+                      id="profile-tab"
+                      role="tabpanel"
+                    >
+                      <div class="row">
+                        <div class="col-xxl-12">
+                          <div class="card">
+                            <div class="card-body">
+                              <h5 class="card-title mb-5">
+                                Complete Your Profile
+                              </h5>
+                              <div
+                                class="progress animated-progress custom-progress progress-label"
+                              >
+                                <div
+                                  class="progress-bar bg-danger"
+                                  role="progressbar"
+                                  style="width: 30%"
+                                  aria-valuenow="30"
+                                  aria-valuemin="0"
+                                  aria-valuemax="100"
+                                >
+                                  <div class="label">30%</div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="card">
+                            <div class="card-body">
+                              <h5 class="card-title mb-3">Info</h5>
+                              <div class="table-responsive">
+                                <table class="table table-borderless mb-0">
+                                  <tbody>
+                                    <tr>
+                                      <th class="ps-0" scope="row">
+                                        Full Name :
+                                      </th>
+                                      <td class="text-muted"><%= lecturer.title %> <%= lecturer.firstName %> <%= lecturer.lastName %></td>
+                                    </tr>
+                                    <tr>
+                                      <th class="ps-0" scope="row">Mobile :</th>
+                                      <td class="text-muted">
+                                        <%= lecturer.phoneNumber %>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th class="ps-0" scope="row">E-mail :</th>
+                                      <td class="text-muted">
+                                        <%= lecturer.email %>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th class="ps-0" scope="row">
+                                        Location :
+                                      </th>
+                                      <td class="text-muted"><%= lecturer.city %>, <%= lecturer.country %></td>
+                                    </tr>
+                                    <tr>
+                                      <th class="ps-0" scope="row">Position</th>
+                                      <td class="text-muted"> <%= lecturer.title %></td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                            <!-- end card body -->
+                          </div>
+                          <!-- end card -->
+                          <div class="col-xxl-12">
+                            <div class="card">
+                              <div class="card-body">
+                                <h5 class="card-title mb-3">About</h5>
+                                <p>
+                                  <%= lecturer.bio %>
+                                </p>
+
+                                <!--end row-->
+                              </div>
+                              <!--end card-body-->
+                            </div>
+                            <!-- end card -->
+                          </div>
+                          <div class="card">
+                            <div class="card-body">
+                              <h5 class="card-title mb-4">Social</h5>
+                              <div class="d-flex flex-wrap gap-2">
+                                <div>
+                                  <a
+                                    href="javascript:void(0);"
+                                    class="avatar-xs d-block"
+                                  >
+                                    <span
+                                      class="avatar-title rounded-circle fs-16 bg-dark text-light"
+                                    >
+                                      <i class="ri-google-fill"></i>
+                                    </span>
+                                  </a>
+                                </div>
+                                <div>
+                                  <a
+                                    href="javascript:void(0);"
+                                    class="avatar-xs d-block"
+                                  >
+                                    <span
+                                      class="avatar-title rounded-circle fs-16 bg-primary"
+                                    >
+                                      <i class="ri-linkedin-fill"></i>
+                                    </span>
+                                  </a>
+                                </div>
+                                <div>
+                                  <a
+                                    href="javascript:void(0);"
+                                    class="avatar-xs d-block"
+                                  >
+                                    <span
+                                      class="avatar-title rounded-circle fs-16 bg-success"
+                                    >
+                                      <i class="ri-facebook-fill"></i>
+                                    </span>
+                                  </a>
+                                </div>
+                                <div>
+                                  <a
+                                    href="javascript:void(0);"
+                                    class="avatar-xs d-block"
+                                  >
+                                    <span
+                                      class="avatar-title rounded-circle fs-16 bg-danger"
+                                    >
+                                      <i class="ri-drive-fill"></i>
+                                    </span>
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- end card body -->
+                          </div>
+                          <!-- end card -->
+
+                          <div class="card">
+                            <div class="card-body">
+                              <h5 class="card-title mb-4">Role & Responsibility</h5>
+                              <div class="d-flex flex-wrap gap-2 fs-15">
+                                <a
+                                  href="javascript:void(0);"
+                                  class="badge badge-soft-primary"
+                                  >Dean & Lecturer</a
+                                >
+                                
+                              </div>
+                            </div>
+                            <!-- end card body -->
+                          </div>
+                          <!-- end card -->
+
+                          <div class="card">
+                            <div class="card-body">
+                              <div class="d-flex align-items-center mb-4">
+                                <div class="flex-grow-1">
+                                  <h5 class="card-title mb-0">
+                                    Teaching Assistant
+                                  </h5>
+                                </div>
+                                <div class="flex-shrink-0">
+                                  <div class="dropdown">
+                                    <a
+                                      href="#"
+                                      role="button"
+                                      id="dropdownMenuLink2"
+                                      data-bs-toggle="dropdown"
+                                      aria-expanded="false"
+                                    >
+                                      <i class="ri-more-2-fill fs-14"></i>
+                                    </a>
+
+                                    <ul
+                                      class="dropdown-menu dropdown-menu-end"
+                                      aria-labelledby="dropdownMenuLink2"
+                                    >
+                                      <li>
+                                        <a class="dropdown-item" href="#"
+                                          >View</a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a class="dropdown-item" href="#"
+                                          >Edit</a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a class="dropdown-item" href="#"
+                                          >Delete</a
+                                        >
+                                      </li>
+                                    </ul>
+                                  </div>
+                                </div>
+                              </div>
+                              <div>
+                                <div class="d-flex align-items-center py-3">
+                                  <div class="avatar-xs flex-shrink-0 me-3">
+                                    <img
+                                      src="admin-assets/images/users/avatar-3.jpg"
+                                      alt=""
+                                      class="img-fluid rounded-circle"
+                                    />
+                                  </div>
+                                  <div class="flex-grow-1">
+                                    <div>
+                                      <h5 class="fs-14 mb-1">Musa Sule</h5>
+                                      <p class="fs-13 text-muted mb-0">
+                                        BSc. Accounting
+                                      </p>
+                                    </div>
+                                  </div>
+                                  <div class="flex-shrink-0 ms-2">
+                                    <button
+                                      type="button"
+                                      class="btn btn-sm btn-outline-success"
+                                    >
+                                      <i
+                                        class="ri-user-add-line align-middle"
+                                      ></i>
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- end card body -->
+                          </div>
+                          <!--end card-->
+                        </div>
+                        <!--end col-->
+                      </div>
+                      <!--end row-->
+                    </div>
+
+                    <!--end tab-pane-->
+                    <div
+                      class="tab-pane fade"
+                      id="research-work-tab"
+                      role="tabpanel"
+                    >
+                      <div class="card">
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col-xxl-6 col-sm-6">
+                              <div
+                                class="card profile-project-card shadow-none profile-project-warning"
+                              >
+                                <div class="card-body p-4">
+                                  <div class="d-flex">
+                                    <div
+                                      class="flex-grow-1 text-muted overflow-hidden"
+                                    >
+                                      <h5 class="fs-14 text-truncate">
+                                        <a href="#" class="text-dark"
+                                          >The Finance State of Ghana</a
+                                        >
+                                      </h5>
+                                      <p class="text-muted text-truncate mb-0">
+                                        Last Update :
+                                        <span class="fw-semibold text-dark"
+                                          >2 year Ago</span
+                                        >
+                                      </p>
+                                    </div>
+                                    <div class="flex-shrink-0 ms-2">
+                                      <div
+                                        class="badge badge-soft-warning fs-10"
+                                      >
+                                        Completed
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="d-flex mt-4">
+                                    <div class="flex-grow-1">
+                                      <div
+                                        class="d-flex align-items-center gap-2"
+                                      >
+                                        <div>
+                                          <h5 class="fs-12 text-muted mb-0">
+                                            Members :
+                                          </h5>
+                                        </div>
+                                        <div class="avatar-group">
+                                          <div class="avatar-group-item">
+                                            <div class="avatar-xs">
+                                              <img
+                                                src="/admin-assets/images/users/prof-osman.png"
+                                                alt=""
+                                                class="rounded-circle img-fluid"
+                                              />
+                                            </div>
+                                          </div>
+                                          <div class="avatar-group-item">
+                                            <div class="avatar-xs">
+                                              <img
+                                                src="/admin-assets/images/users/avatar-3.jpg"
+                                                alt=""
+                                                class="rounded-circle img-fluid"
+                                              />
+                                            </div>
+                                          </div>
+                                          <div class="avatar-group-item">
+                                            <div class="avatar-xs">
+                                              <div
+                                                class="avatar-title rounded-circle bg-light text-primary"
+                                              >
+                                                J
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- end card body -->
+                              </div>
+                              <!-- end card -->
+                            </div>
+                            <!--end col-->
+                            <div class="col-xxl-6 col-sm-6">
+                              <div
+                                class="card profile-project-card shadow-none profile-project-success"
+                              >
+                                <div class="card-body p-4">
+                                  <div class="d-flex">
+                                    <div
+                                      class="flex-grow-1 text-muted overflow-hidden"
+                                    >
+                                      <h5 class="fs-14 text-truncate">
+                                        <a href="#" class="text-dark"
+                                          >Analytics of Ghana Petroleum Feul
+                                          Prices</a
+                                        >
+                                      </h5>
+                                      <p class="text-muted text-truncate mb-0">
+                                        Last Update :
+                                        <span class="fw-semibold text-dark"
+                                          >2 month Ago</span
+                                        >
+                                      </p>
+                                    </div>
+                                    <div class="flex-shrink-0 ms-2">
+                                      <div
+                                        class="badge badge-soft-primary fs-10"
+                                      >
+                                        In Progress
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="d-flex mt-4">
+                                    <div class="flex-grow-1">
+                                      <div
+                                        class="d-flex align-items-center gap-2"
+                                      >
+                                        <div>
+                                          <h5 class="fs-12 text-muted mb-0">
+                                            Members :
+                                          </h5>
+                                        </div>
+                                        <div class="avatar-group">
+                                          <div class="avatar-group-item">
+                                            <div class="avatar-xs">
+                                              <img
+                                                src="/admin-assets/images/users/avatar-8.jpg"
+                                                alt=""
+                                                class="rounded-circle img-fluid"
+                                              />
+                                            </div>
+                                          </div>
+                                          <div class="avatar-group-item">
+                                            <div class="avatar-xs">
+                                              <img
+                                                src="/admin-assets/images/users/avatar-7.jpg"
+                                                alt=""
+                                                class="rounded-circle img-fluid"
+                                              />
+                                            </div>
+                                          </div>
+                                          <div class="avatar-group-item">
+                                            <div class="avatar-xs">
+                                              <img
+                                                src="/admin-assets/images/users/avatar-6.jpg"
+                                                alt=""
+                                                class="rounded-circle img-fluid"
+                                              />
+                                            </div>
+                                          </div>
+                                          <div class="avatar-group-item">
+                                            <div class="avatar-xs">
+                                              <div
+                                                class="avatar-title rounded-circle bg-primary"
+                                              >
+                                                2+
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- end card body -->
+                              </div>
+                              <!-- end card -->
+                            </div>
+                            <!--end col-->
+
+                            <!--end col-->
+                            <div class="col-lg-12">
+                              <div class="mt-4">
+                                <ul
+                                  class="pagination pagination-separated justify-content-center mb-0"
+                                >
+                                  <li class="page-item disabled">
+                                    <a
+                                      href="javascript:void(0);"
+                                      class="page-link"
+                                      ><i class="mdi mdi-chevron-left"></i
+                                    ></a>
+                                  </li>
+                                  <li class="page-item active">
+                                    <a
+                                      href="javascript:void(0);"
+                                      class="page-link"
+                                      >1</a
+                                    >
+                                  </li>
+
+                                  <li class="page-item">
+                                    <a
+                                      href="javascript:void(0);"
+                                      class="page-link"
+                                      ><i class="mdi mdi-chevron-right"></i
+                                    ></a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                          <!--end row-->
+                        </div>
+                        <!--end card-body-->
+                      </div>
+                      <!--end card-->
+                    </div>
+                    <!--end tab-pane-->
+                    <div
+                      class="tab-pane fade"
+                      id="document-tab"
+                      role="tabpanel"
+                    >
+                      <div class="card">
+                        <div class="card-body">
+                          <div class="d-flex align-items-center mb-4">
+                            <h5 class="card-title flex-grow-1 mb-0">
+                              Documents
+                            </h5>
+                            <div class="flex-shrink-0">
+                              <input
+                                class="form-control d-none"
+                                type="file"
+                                id="formFile"
+                              />
+                              <label for="formFile" class="btn btn-danger"
+                                ><i
+                                  class="ri-upload-2-fill me-1 align-bottom"
+                                ></i>
+                                Upload File</label
+                              >
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-12">
+                              <div class="table-responsive">
+                                <table
+                                  class="table table-borderless align-middle mb-0"
+                                >
+                                  <thead class="table-light">
+                                    <tr>
+                                      <th scope="col">File Name</th>
+                                      <th scope="col">Type</th>
+                                      <th scope="col">Size</th>
+                                      <th scope="col">Upload Date</th>
+                                      <th scope="col">Action</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <td>
+                                        <div class="d-flex align-items-center">
+                                          <div class="avatar-sm">
+                                            <div
+                                              class="avatar-title bg-soft-primary text-primary rounded fs-20"
+                                            >
+                                              <i class="ri-file-zip-fill"></i>
+                                            </div>
+                                          </div>
+                                          <div class="ms-3 flex-grow-1">
+                                            <h6 class="fs-15 mb-0">
+                                              <a href="javascript:void(0)"
+                                                >Analytics-documents.zip</a
+                                              >
+                                            </h6>
+                                          </div>
+                                        </div>
+                                      </td>
+                                      <td>Zip File</td>
+                                      <td>4.57 MB</td>
+                                      <td>12 Dec 2021</td>
+                                      <td>
+                                        <div class="dropdown">
+                                          <a
+                                            href="javascript:void(0);"
+                                            class="btn btn-light btn-icon"
+                                            id="dropdownMenuLink15"
+                                            data-bs-toggle="dropdown"
+                                            aria-expanded="true"
+                                          >
+                                            <i class="ri-equalizer-fill"></i>
+                                          </a>
+                                          <ul
+                                            class="dropdown-menu dropdown-menu-end"
+                                            aria-labelledby="dropdownMenuLink15"
+                                          >
+                                            <li>
+                                              <a
+                                                class="dropdown-item"
+                                                href="javascript:void(0);"
+                                                ><i
+                                                  class="ri-eye-fill me-2 align-middle text-muted"
+                                                ></i
+                                                >View</a
+                                              >
+                                            </li>
+                                            <li>
+                                              <a
+                                                class="dropdown-item"
+                                                href="javascript:void(0);"
+                                                ><i
+                                                  class="ri-download-2-fill me-2 align-middle text-muted"
+                                                ></i
+                                                >Download</a
+                                              >
+                                            </li>
+                                            <li class="dropdown-divider"></li>
+                                            <li>
+                                              <a
+                                                class="dropdown-item"
+                                                href="javascript:void(0);"
+                                                ><i
+                                                  class="ri-delete-bin-5-line me-2 align-middle text-muted"
+                                                ></i
+                                                >Delete</a
+                                              >
+                                            </li>
+                                          </ul>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                              <div class="text-center mt-3">
+                                <a
+                                  href="javascript:void(0);"
+                                  class="text-success"
+                                  ><i
+                                    class="mdi mdi-loading mdi-spin fs-20 align-middle me-2"
+                                  ></i>
+                                  Load more
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!--end tab-pane-->
+                  </div>
+                  <!--end tab-content-->
+                </div>
+              </div>
+              <!--end col-->
+            </div>
+            <!--end row-->
+          </div>
+          <!-- container-fluid -->
+        </div>
+
+        <!-- End Page-content -->
+        <%- include('../partials/footer.ejs') %>
+      </div>
+    </div>
+    <!-- END layout-wrapper -->
+
+    <!--start back-to-top-->
+    <button
+      onclick="topFunction()"
+      class="btn btn-danger btn-icon"
+      id="back-to-top"
+    >
+      <i class="ri-arrow-up-line"></i>
+    </button>
+    <!--end back-to-top-->
+
+    <%- include('../partials/scripts.ejs') %>
+  </body>
+</html>

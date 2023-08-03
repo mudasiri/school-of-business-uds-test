@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
+
+    <%- include('../partials/head.ejs') %>
+
+
+<body>
+
+     <div class="auth-page-wrapper pt-5" style="background: #247c3e;">
+       
+
+        <!-- auth page content -->
+        <div class="auth-page-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="text-center mt-sm-5 mb-4 text-white-50">
+                            <div>
+                                
+                                <a href="index" class="d-inline-block text-white fw-semibold fs-36 auth-logo">
+                                    <img src="admin-assets/images/logo-light.png" alt="" height="60">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+
+                <div class="row justify-content-center">
+                    <div class="col-md-8 col-lg-6 col-xl-5 signupC">
+                        <div class="card mt-2">
+
+                            <div class="card-body p-4">
+                                <div class="text-center mt-2">
+                                    <h5 class="fw-semibold">Sign In</h5>
+                                    <p class="text-muted">UDS Business School Lecturer's Dashboard</p>
+                                </div>
+                                <div class="p-2 mt-4">
+                                    <form action="/login" method="post">
+
+                                
+                                        <div class="mb-3">
+                                            <label for="useremail" class="form-label">Email <span class="text-danger">*</span></label>
+                                            <input type="email" class="form-control" id="useremail" name="email" placeholder="Enter email address" required>
+                                            <div class="invalid-feedback">
+                                                Enter email
+                                            </div>
+                                        </div>
+                                        
+
+                                        <div class="mb-3">
+                                           
+                                            <label class="form-label" for="password-input">Password</label>
+                                            <div class="position-relative auth-pass-inputgroup mb-3">
+                                                <input type="password" name="password" class="form-control pe-5 password-input" placeholder="Enter password" id="password-input">
+                                                <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="password-addon"><i class="ri-eye-fill align-middle"></i></button>
+                                                <div class="invalid-feedback">
+                                                    Enter password
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                         <div class="float-end" >
+                                                <a href="reset-password" class="text-muted">Forgot password?</a>
+                                            </div><br>
+                                        
+
+                                   
+                                       
+
+                                        <!-- <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="auth-remember-check">
+                                            <label class="form-check-label" for="auth-remember-check">Remember me</label>
+                                        </div> -->
+
+                                        <div class="mt-4" style="background-color:#247c3e;">
+                                            <form action="add-lecturer.ejs">
+                                                <button class="btn btnc text-white w-100" type="submit">Sign In</button>
+                                            </form>
+                                        </div>
+
+                                        
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- end card body -->
+                        </div>
+                        <!-- end card -->
+
+                        <div class="mt-4 text-center mb-4">
+                            <p class="mb-0">Don't have an account ? <a href="signup" style="color: #ffffff;" class="fw-semibold ltext text-decoration-underline"> Sign up </a> </p>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end container -->
+        </div>
+        <!-- end auth page content -->
+
+        <!-- footer -->
+        <footer class="footer" style="background-color: #12592d;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="text-center">
+                            <p class="mb-0 fs-16 text-white">&copy;
+                                <script>document.write(new Date().getFullYear())</script> UDS Business School
+                            </p>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+        </footer>
+        <!-- end Footer -->
+    </div>
+  
+
+    <%- include('../partials/scripts.ejs') %>
+
+</body>
+
+
+</html>

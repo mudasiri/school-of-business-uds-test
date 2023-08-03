@@ -1,0 +1,1711 @@
+
+<!doctype html>
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
+
+
+    <%- include('../partials/head.ejs') %>
+
+
+<body>
+
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+
+            <%- include('../partials/topbar.ejs') %>
+
+
+<!-- removeNotificationModal -->
+<!-- <div id="removeNotificationModal" class="modal fade zoomIn" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="NotificationModalbtn-close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mt-2 text-center">
+                    <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop" colors="primary:#f7b84b,secondary:#f06548" style="width:100px;height:100px"></lord-icon>
+                    <div class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
+                        <h4>Are you sure ?</h4>
+                        <p class="text-muted mx-4 mb-0">Are you sure you want to remove this Notification ?</p>
+                    </div>
+                </div>
+                <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
+                    <button type="button" class="btn w-sm btn-light" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn w-sm btn-danger" id="delete-notification">Yes, Delete It!</button>
+                </div>
+            </div>
+
+        </div 
+    </div>
+</div> -->
+<!-- /.modal -->
+        <!-- ========== App Menu ========== -->
+           <%- include('../partials/sidebar.ejs') %>
+
+        <!-- Left Sidebar End -->
+        <!-- Vertical Overlay-->
+        <div class="vertical-overlay"></div>
+
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="main-content">
+        <div class="page-content">
+          <div class="container-fluid">
+            <div class="position-relative mx-n4 mt-n4">
+              <div class="profile-wid-bg profile-setting-img">
+                <img
+                  src="<%= lecturer.coverPic.replace('public','') %>"
+                  class="profile-wid-img"
+                  alt=""
+                />
+                <div class="overlay-content">
+                  <div class="text-end p-3">
+                    <div class="p-0 ms-auto rounded-circle profile-photo-edit">
+                      <input
+                        id="coverPic"
+                        type="file"
+                        class="profile-foreground-img-file-input"
+                      />
+                      <label
+                        for="coverPic"
+                        class="profile-photo-edit btn btn-light"
+                      >
+                        <i class="ri-image-edit-line align-bottom me-1"></i>
+                        Upload Cover
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-xxl-3">
+                <div class="card mt-n5">
+                  <div class="card-body p-4">
+                    <div class="text-center">
+                      <div
+                        class="profile-user position-relative d-inline-block mx-auto mb-4"
+                      >
+                        <img
+                          src="<%= lecturer.pic.replace('public','') %>"
+                          class="rounded-circle avatar-xl img-thumbnail user-profile-image"
+                          alt="user-profile-image"
+                        />
+                        <div
+                          class="avatar-xs p-0 rounded-circle profile-photo-edit"
+                        >
+                          <input
+                            id="profilePic"
+                            type="file"
+                            class="profile-img-file-input"
+                          />
+                          <label
+                            for="profilePic"
+                            class="profile-photo-edit avatar-xs"
+                          >
+                            <span
+                              class="avatar-title rounded-circle bg-light text-body"
+                            >
+                              <i class="ri-camera-fill"></i>
+                            </span>
+                          </label>
+                        </div>
+                      </div>
+                      <!-- <h5 class="fs-16 mb-1">Anna Adame</h5>
+                                        <p class="text-muted mb-0">Lead Designer / Developer</p> -->
+                    </div>
+                  </div>
+                </div>
+                <!--end card-->
+                <div class="card">
+                  <div class="card-body">
+                    <div class="d-flex align-items-center mb-5">
+                      <div class="flex-grow-1">
+                        <h5 class="card-title mb-0">Complete Your Profile</h5>
+                      </div>
+                      <div class="flex-shrink-0">
+                        <a
+                          href="javascript:void(0);"
+                          class="badge bg-light text-primary fs-12"
+                          ><i class="ri-edit-box-line align-bottom me-1"></i>
+                          Edit</a
+                        >
+                      </div>
+                    </div>
+                    <div
+                      class="progress animated-progress custom-progress progress-label"
+                    >
+                      <div
+                        class="progress-bar bg-danger"
+                        role="progressbar"
+                        style="width: 30%"
+                        aria-valuenow="30"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                      >
+                        <div class="label">40%</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-body">
+                    <div class="d-flex align-items-center mb-4">
+                      <div class="flex-grow-1">
+                        <h5 class="card-title mb-0">Portfolio</h5>
+                      </div>
+                      <div class="flex-shrink-0">
+                        <a
+                          href="javascript:void(0);"
+                          class="badge bg-light text-primary fs-12"
+                          ><i class="ri-add-fill align-bottom me-1"></i> Add</a
+                        >
+                      </div>
+                    </div>
+                    <div class="mb-3 d-flex">
+                      <div class="avatar-xs d-block flex-shrink-0 me-3">
+                        <span
+                          class="avatar-title rounded-circle fs-16 bg-dark text-light"
+                        >
+                          <i class="ri-google-fill"></i>
+                        </span>
+                      </div>
+                      <input
+                        type="email"
+                        class="form-control"
+                        id="gitUsername"
+                        placeholder=""
+                        value=""
+                      />
+                    </div>
+                    <div class="mb-3 d-flex">
+                      <div class="avatar-xs d-block flex-shrink-0 me-3">
+                        <span
+                          class="avatar-title rounded-circle fs-16 bg-primary"
+                        >
+                          <i class="ri-linkedin-fill"></i>
+                        </span>
+                      </div>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="websiteInput"
+                        placeholder=""
+                        value=""
+                      />
+                    </div>
+                    <div class="mb-3 d-flex">
+                      <div class="avatar-xs d-block flex-shrink-0 me-3">
+                        <span
+                          class="avatar-title rounded-circle fs-16 bg-success"
+                        >
+                          <i class=""></i>
+                        </span>
+                      </div>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="dribbleName"
+                        placeholder=""
+                        value=""
+                      />
+                    </div>
+                    <div class="d-flex">
+                      <div class="avatar-xs d-block flex-shrink-0 me-3">
+                        <span
+                          class="avatar-title rounded-circle fs-16 bg-danger"
+                        >
+                          <i class="ri-drive-fill"></i>
+                        </span>
+                      </div>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="pinterestName"
+                        placeholder=""
+                        value=""
+                      />
+                    </div>
+                  </div>
+                </div>
+                <!--end card-->
+              </div>
+              <!--end col-->
+              <div class="col-xxl-9">
+                <div class="card mt-xxl-n5">
+                  <div class="card-header">
+                    <ul
+                      class="nav nav-tabs-custom rounded card-header-tabs border-bottom-0"
+                      role="tablist"
+                    >
+                      <li class="nav-item" role="presentation">
+                        <a
+                          class="nav-link active"
+                          data-bs-toggle="tab"
+                          href="#personalDetails"
+                          role="tab"
+                          aria-selected="true"
+                        >
+                          <i class="fas fa-home"></i> Profile Details
+                        </a>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <a
+                          class="nav-link"
+                          data-bs-toggle="tab"
+                          href="#changePassword"
+                          role="tab"
+                          aria-selected="false"
+                          tabindex="-1"
+                        >
+                          <i class="far fa-user"></i> Academics
+                        </a>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <a
+                          class="nav-link"
+                          data-bs-toggle="tab"
+                          href="#experience"
+                          role="tab"
+                          aria-selected="false"
+                          tabindex="-1"
+                        >
+                          <i class="far fa-envelope"></i> Experience
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="card-body p-4">
+                    <div class="tab-content">
+                      <div
+                        class="tab-pane active"
+                        id="personalDetails"
+                        role="tabpanel"
+                      >
+                        <form action="javascript:void(0);">
+                          <div class="row">
+                            <div class="col-lg-6">
+                              <div class="mb-3">
+                                <label for="firstName" class="form-label"
+                                  >First Name</label
+                                >
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="firstName"
+                                  value="<%= lecturer.firstName %>"
+                                  name="firstName"
+                                />
+                              </div>
+                            </div>
+                            <!--end col-->
+                            <div class="col-lg-6">
+                              <div class="mb-3">
+                                <label for="lastName" class="form-label"
+                                  >Last Name</label
+                                >
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="lastName"
+                                  value="<%= lecturer.lastName %>"
+                                  name="lastName"
+                                />
+                              </div>
+                            </div>
+                            <!--end col-->
+                            <div class="col-lg-6">
+                              <div class="mb-3">
+                                <label for="phoneNumber" class="form-label"
+                                  >Phone Number</label
+                                >
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="phoneNumber"
+                                  value="<%= lecturer.phoneNumber %>"
+                                  name="phoneNumber"
+                                />
+                              </div>
+                            </div>
+                            <!--end col-->
+                            <div class="col-lg-6">
+                              <div class="mb-3">
+                                <label for="email" class="form-label"
+                                  >Email Address</label
+                                >
+                                <input
+                                  type="email"
+                                  class="form-control"
+                                  id="email"
+                                  value="<%= lecturer.email %>"
+                                  name="email"
+                                />
+                              </div>
+                            </div>
+                            <!--end col-->
+
+                            <!--end col-->
+                            <div class="col-lg-12">
+                              <div class="mb-3">
+                                <label for="skillsInput" class="form-label"
+                                  >Skills</label
+                                >
+                                <div
+                                  class="choices"
+                                  data-type="select-multiple"
+                                  role="combobox"
+                                  aria-autocomplete="list"
+                                  aria-haspopup="true"
+                                  aria-expanded="false"
+                                >
+                                  <div class="choices__inner">
+                                    <select
+                                      class="form-control choices__input"
+                                      name="skillsInput"
+                                      data-choices=""
+                                      data-choices-text-unique-true=""
+                                      multiple=""
+                                      id="skillsInput"
+                                      hidden=""
+                                      tabindex="-1"
+                                      data-choice="active"
+                                    >
+                                      <option
+                                        value="Business Ananlytics"
+                                        data-custom-properties="[object Object]"
+                                      >
+                                        Business Ananlytics
+                                      </option>
+                                    </select>
+                                    <div
+                                      class="choices__list choices__list--multiple"
+                                    >
+                                      <div
+                                        class="choices__item choices__item--selectable"
+                                        data-item=""
+                                        data-id="1"
+                                        data-value="Business Ananlytics,"
+                                        data-custom-properties="[object Object]"
+                                        aria-selected="true"
+                                      >
+                                        Business Ananlytics
+                                      </div>
+                                    </div>
+                                    <input
+                                      type="text"
+                                      class="choices__input choices__input--cloned"
+                                      autocomplete="off"
+                                      autocapitalize="off"
+                                      spellcheck="false"
+                                      role="textbox"
+                                      aria-autocomplete="list"
+                                      aria-label="null"
+                                    />
+                                  </div>
+                                  <div
+                                    class="choices__list choices__list--dropdown"
+                                    aria-expanded="false"
+                                  >
+                                    <div
+                                      class="choices__list"
+                                      aria-multiselectable="true"
+                                      role="listbox"
+                                    >
+                                      <div
+                                        id="choices--skillsInput-item-choice-1"
+                                        class="choices__item choices__item--choice choices__item--selectable is-highlighted"
+                                        role="option"
+                                        data-choice=""
+                                        data-id="1"
+                                        data-value="css"
+                                        data-select-text="Press to select"
+                                        data-choice-selectable=""
+                                        aria-selected="true"
+                                      >
+                                        CSS
+                                      </div>
+                                      <div
+                                        id="choices--skillsInput-item-choice-2"
+                                        class="choices__item choices__item--choice choices__item--selectable"
+                                        role="option"
+                                        data-choice=""
+                                        data-id="2"
+                                        data-value="html"
+                                        data-select-text="Press to select"
+                                        data-choice-selectable=""
+                                      >
+                                        HTML
+                                      </div>
+                                      <div
+                                        id="choices--skillsInput-item-choice-3"
+                                        class="choices__item choices__item--choice choices__item--selectable"
+                                        role="option"
+                                        data-choice=""
+                                        data-id="3"
+                                        data-value="illustrator"
+                                        data-select-text="Press to select"
+                                        data-choice-selectable=""
+                                      >
+                                        Illustrator
+                                      </div>
+                                      <div
+                                        id="choices--skillsInput-item-choice-5"
+                                        class="choices__item choices__item--choice choices__item--selectable"
+                                        role="option"
+                                        data-choice=""
+                                        data-id="5"
+                                        data-value="photoshop"
+                                        data-select-text="Press to select"
+                                        data-choice-selectable=""
+                                      >
+                                        Photoshop
+                                      </div>
+                                      <div
+                                        id="choices--skillsInput-item-choice-6"
+                                        class="choices__item choices__item--choice choices__item--selectable"
+                                        role="option"
+                                        data-choice=""
+                                        data-id="6"
+                                        data-value="php"
+                                        data-select-text="Press to select"
+                                        data-choice-selectable=""
+                                      >
+                                        PHP
+                                      </div>
+                                      <div
+                                        id="choices--skillsInput-item-choice-7"
+                                        class="choices__item choices__item--choice choices__item--selectable"
+                                        role="option"
+                                        data-choice=""
+                                        data-id="7"
+                                        data-value="python"
+                                        data-select-text="Press to select"
+                                        data-choice-selectable=""
+                                      >
+                                        Python
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <!--end col-->
+                            <div class="col-lg-6">
+                              <div class="mb-3">
+                                <label for="title" class="form-label"
+                                  >Title</label
+                                >
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="title"
+                                  value="<%= lecturer.title %>"
+                                  name="title"
+                                />
+                              </div>
+                            </div>
+                            <!--end col-->
+                            <div class="col-lg-6">
+                              <div class="mb-3">
+                                <label for="department" class="form-label"
+                                  >Department</label
+                                >
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="department"
+                                  value="<%= lecturer.department %>"
+                                />
+                              </div>
+                            </div>
+                            <!--end col-->
+                            <div class="col-lg-4">
+                              <div class="mb-3">
+                                <label for="city" class="form-label"
+                                  >City</label
+                                >
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="city"
+                                  value="<%= lecturer.city %>"
+                                  name="city"
+                                />
+                              </div>
+                            </div>
+                            <!--end col-->
+                            <div class="col-lg-4">
+                              <div class="mb-3">
+                                <label for="country" class="form-label"
+                                  >Country</label
+                                >
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="country"
+                                  value="<%= lecturer.country %>"
+                                  name="country"
+                                />
+                              </div>
+                            </div>
+                            <!--end col-->
+                            <div class="col-lg-4">
+                              <div class="mb-3">
+                                <label for="zipcodeInput" class="form-label"
+                                  >Zip Code</label
+                                >
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  minlength="5"
+                                  maxlength="6"
+                                  id="zipcodeInput"
+                                  placeholder="+233"
+                                  value=""
+                                  name="zipcodeInput"
+                                />
+                              </div>
+                            </div>
+                            <!--end col-->
+                            <div class="col-lg-12">
+                              <div class="mb-3 pb-2">
+                                <label
+                                  for="exampleFormControlTextarea"
+                                  class="form-label"
+                                  >Description</label
+                                >
+                                <textarea
+                                  class="form-control"
+                                  id="bio"
+                                  value="<%= lecturer.bio %>"
+                                  rows="3"
+                                  name="bio"
+                                >
+                            </textarea>
+                              </div>
+                            </div>
+                            <!--end col-->
+                            <div class="col-lg-12">
+                              <div class="hstack gap-2 justify-content-end">
+                                <button type="submit" id="submitBtn" class="btn btn-primary">
+                                  Update
+                                </button>
+                                <button
+                                  type="button"
+                                  class="btn btn-soft-success"
+                                >
+                                  Cancel
+                                </button>
+                              </div>
+                            </div>
+                            <!--end col-->
+                          </div>
+                          <!--end row-->
+                        </form>
+                      </div>
+                      <!--end tab-pane-->
+                      <div class="tab-pane" id="changePassword" role="tabpanel">
+                        <form action="javascript:void(0);">
+                          <!--end row-->
+                        </form>
+                      </div>
+                      <!--end tab-pane-->
+                      <div class="tab-pane" id="experience" role="tabpanel">
+                        <form>
+                          <div id="newlink">
+                            <div id="1">
+                              <div class="row">
+                                <div class="col-lg-12">
+                                  <div class="mb-3">
+                                    <label for="jobTitle" class="form-label"
+                                      >Job Title</label
+                                    >
+                                    <input
+                                      type="text"
+                                      class="form-control"
+                                      id="jobTitle"
+                                      placeholder=""
+                                      value=""
+                                    />
+                                  </div>
+                                </div>
+                                <!--end col-->
+                                <div class="col-lg-6">
+                                  <div class="mb-3">
+                                    <label for="companyName" class="form-label"
+                                      >Company Name</label
+                                    >
+                                    <input
+                                      type="text"
+                                      class="form-control"
+                                      id="companyName"
+                                      placeholder=""
+                                      value=""
+                                    />
+                                  </div>
+                                </div>
+                                <!--end col-->
+                                <div class="col-lg-6">
+                                  <div class="mb-3">
+                                    <label
+                                      for="experienceYear"
+                                      class="form-label"
+                                      >Experience Years</label
+                                    >
+                                    <div class="row">
+                                      <div class="col-lg-5">
+                                        <div
+                                          class="choices"
+                                          data-type="select-one"
+                                          tabindex="0"
+                                          role="listbox"
+                                          aria-haspopup="true"
+                                          aria-expanded="false"
+                                        >
+                                          <div class="choices__inner">
+                                            <select
+                                              class="form-control choices__input"
+                                              data-choices=""
+                                              data-choices-search-false=""
+                                              name="experienceYear"
+                                              id="experienceYear"
+                                              hidden=""
+                                              tabindex="-1"
+                                              data-choice="active"
+                                            >
+                                              <option
+                                                value="Choice 17"
+                                                data-custom-properties="[object Object]"
+                                              >
+                                                2017
+                                              </option>
+                                            </select>
+                                            <div
+                                              class="choices__list choices__list--single"
+                                            >
+                                              <div
+                                                class="choices__item choices__item--selectable"
+                                                data-item=""
+                                                data-id="1"
+                                                data-value="Choice 17"
+                                                data-custom-properties="[object Object]"
+                                                aria-selected="true"
+                                              >
+                                                2017
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div
+                                            class="choices__list choices__list--dropdown"
+                                            aria-expanded="false"
+                                          >
+                                            <div
+                                              class="choices__list"
+                                              role="listbox"
+                                            >
+                                              <div
+                                                id="choices--experienceYear-item-choice-23"
+                                                class="choices__item choices__item--choice choices__placeholder choices__item--selectable is-highlighted"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="23"
+                                                data-value=""
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                                aria-selected="true"
+                                              >
+                                                Select years
+                                              </div>
+                                              <div
+                                                id="choices--experienceYear-item-choice-1"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="1"
+                                                data-value="Choice 1"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2001
+                                              </div>
+                                              <div
+                                                id="choices--experienceYear-item-choice-2"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="2"
+                                                data-value="Choice 2"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2002
+                                              </div>
+                                              <div
+                                                id="choices--experienceYear-item-choice-3"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="3"
+                                                data-value="Choice 3"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2003
+                                              </div>
+                                              <div
+                                                id="choices--experienceYear-item-choice-4"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="4"
+                                                data-value="Choice 4"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2004
+                                              </div>
+                                              <div
+                                                id="choices--experienceYear-item-choice-5"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="5"
+                                                data-value="Choice 5"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2005
+                                              </div>
+                                              <div
+                                                id="choices--experienceYear-item-choice-6"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="6"
+                                                data-value="Choice 6"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2006
+                                              </div>
+                                              <div
+                                                id="choices--experienceYear-item-choice-7"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="7"
+                                                data-value="Choice 7"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2007
+                                              </div>
+                                              <div
+                                                id="choices--experienceYear-item-choice-8"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="8"
+                                                data-value="Choice 8"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2008
+                                              </div>
+                                              <div
+                                                id="choices--experienceYear-item-choice-9"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="9"
+                                                data-value="Choice 9"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2009
+                                              </div>
+                                              <div
+                                                id="choices--experienceYear-item-choice-10"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="10"
+                                                data-value="Choice 10"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2010
+                                              </div>
+                                              <div
+                                                id="choices--experienceYear-item-choice-11"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="11"
+                                                data-value="Choice 11"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2011
+                                              </div>
+                                              <div
+                                                id="choices--experienceYear-item-choice-12"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="12"
+                                                data-value="Choice 12"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2012
+                                              </div>
+                                              <div
+                                                id="choices--experienceYear-item-choice-13"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="13"
+                                                data-value="Choice 13"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2013
+                                              </div>
+                                              <div
+                                                id="choices--experienceYear-item-choice-14"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="14"
+                                                data-value="Choice 14"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2014
+                                              </div>
+                                              <div
+                                                id="choices--experienceYear-item-choice-15"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="15"
+                                                data-value="Choice 15"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2015
+                                              </div>
+                                              <div
+                                                id="choices--experienceYear-item-choice-16"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="16"
+                                                data-value="Choice 16"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2016
+                                              </div>
+                                              <div
+                                                id="choices--experienceYear-item-choice-17"
+                                                class="choices__item choices__item--choice is-selected choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="17"
+                                                data-value="Choice 17"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2017
+                                              </div>
+                                              <div
+                                                id="choices--experienceYear-item-choice-18"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="18"
+                                                data-value="Choice 18"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2018
+                                              </div>
+                                              <div
+                                                id="choices--experienceYear-item-choice-19"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="19"
+                                                data-value="Choice 19"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2019
+                                              </div>
+                                              <div
+                                                id="choices--experienceYear-item-choice-20"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="20"
+                                                data-value="Choice 20"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2020
+                                              </div>
+                                              <div
+                                                id="choices--experienceYear-item-choice-21"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="21"
+                                                data-value="Choice 21"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2021
+                                              </div>
+                                              <div
+                                                id="choices--experienceYear-item-choice-22"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="22"
+                                                data-value="Choice 22"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2022
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <!--end col-->
+                                      <div class="col-auto align-self-center">
+                                        to
+                                      </div>
+                                      <!--end col-->
+                                      <div class="col-lg-5">
+                                        <div
+                                          class="choices"
+                                          data-type="select-one"
+                                          tabindex="0"
+                                          role="listbox"
+                                          aria-haspopup="true"
+                                          aria-expanded="false"
+                                        >
+                                          <div class="choices__inner">
+                                            <select
+                                              class="form-control choices__input"
+                                              data-choices=""
+                                              data-choices-search-false=""
+                                              name="choices-single-default2"
+                                              hidden=""
+                                              tabindex="-1"
+                                              data-choice="active"
+                                            >
+                                              <option
+                                                value="Choice 20"
+                                                data-custom-properties="[object Object]"
+                                              >
+                                                2020
+                                              </option>
+                                            </select>
+                                            <div
+                                              class="choices__list choices__list--single"
+                                            >
+                                              <div
+                                                class="choices__item choices__item--selectable"
+                                                data-item=""
+                                                data-id="1"
+                                                data-value="Choice 20"
+                                                data-custom-properties="[object Object]"
+                                                aria-selected="true"
+                                              >
+                                                2020
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div
+                                            class="choices__list choices__list--dropdown"
+                                            aria-expanded="false"
+                                          >
+                                            <div
+                                              class="choices__list"
+                                              role="listbox"
+                                            >
+                                              <div
+                                                id="choices--choices-single-default2-yr-item-choice-23"
+                                                class="choices__item choices__item--choice choices__placeholder choices__item--selectable is-highlighted"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="23"
+                                                data-value=""
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                                aria-selected="true"
+                                              >
+                                                Select years
+                                              </div>
+                                              <div
+                                                id="choices--choices-single-default2-yr-item-choice-1"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="1"
+                                                data-value="Choice 1"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2001
+                                              </div>
+                                              <div
+                                                id="choices--choices-single-default2-yr-item-choice-2"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="2"
+                                                data-value="Choice 2"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2002
+                                              </div>
+                                              <div
+                                                id="choices--choices-single-default2-yr-item-choice-3"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="3"
+                                                data-value="Choice 3"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2003
+                                              </div>
+                                              <div
+                                                id="choices--choices-single-default2-yr-item-choice-4"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="4"
+                                                data-value="Choice 4"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2004
+                                              </div>
+                                              <div
+                                                id="choices--choices-single-default2-yr-item-choice-5"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="5"
+                                                data-value="Choice 5"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2005
+                                              </div>
+                                              <div
+                                                id="choices--choices-single-default2-yr-item-choice-6"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="6"
+                                                data-value="Choice 6"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2006
+                                              </div>
+                                              <div
+                                                id="choices--choices-single-default2-yr-item-choice-7"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="7"
+                                                data-value="Choice 7"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2007
+                                              </div>
+                                              <div
+                                                id="choices--choices-single-default2-yr-item-choice-8"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="8"
+                                                data-value="Choice 8"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2008
+                                              </div>
+                                              <div
+                                                id="choices--choices-single-default2-yr-item-choice-9"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="9"
+                                                data-value="Choice 9"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2009
+                                              </div>
+                                              <div
+                                                id="choices--choices-single-default2-yr-item-choice-10"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="10"
+                                                data-value="Choice 10"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2010
+                                              </div>
+                                              <div
+                                                id="choices--choices-single-default2-yr-item-choice-11"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="11"
+                                                data-value="Choice 11"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2011
+                                              </div>
+                                              <div
+                                                id="choices--choices-single-default2-yr-item-choice-12"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="12"
+                                                data-value="Choice 12"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2012
+                                              </div>
+                                              <div
+                                                id="choices--choices-single-default2-yr-item-choice-13"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="13"
+                                                data-value="Choice 13"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2013
+                                              </div>
+                                              <div
+                                                id="choices--choices-single-default2-yr-item-choice-14"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="14"
+                                                data-value="Choice 14"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2014
+                                              </div>
+                                              <div
+                                                id="choices--choices-single-default2-yr-item-choice-15"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="15"
+                                                data-value="Choice 15"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2015
+                                              </div>
+                                              <div
+                                                id="choices--choices-single-default2-yr-item-choice-16"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="16"
+                                                data-value="Choice 16"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2016
+                                              </div>
+                                              <div
+                                                id="choices--choices-single-default2-yr-item-choice-17"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="17"
+                                                data-value="Choice 17"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2017
+                                              </div>
+                                              <div
+                                                id="choices--choices-single-default2-yr-item-choice-18"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="18"
+                                                data-value="Choice 18"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2018
+                                              </div>
+                                              <div
+                                                id="choices--choices-single-default2-yr-item-choice-19"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="19"
+                                                data-value="Choice 19"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2019
+                                              </div>
+                                              <div
+                                                id="choices--choices-single-default2-yr-item-choice-20"
+                                                class="choices__item choices__item--choice is-selected choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="20"
+                                                data-value="Choice 20"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2020
+                                              </div>
+                                              <div
+                                                id="choices--choices-single-default2-yr-item-choice-21"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="21"
+                                                data-value="Choice 21"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2021
+                                              </div>
+                                              <div
+                                                id="choices--choices-single-default2-yr-item-choice-22"
+                                                class="choices__item choices__item--choice choices__item--selectable"
+                                                role="option"
+                                                data-choice=""
+                                                data-id="22"
+                                                data-value="Choice 22"
+                                                data-select-text="Press to select"
+                                                data-choice-selectable=""
+                                              >
+                                                2022
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <!--end col-->
+                                    </div>
+                                    <!--end row-->
+                                  </div>
+                                </div>
+                                <!--end col-->
+                                <div class="col-lg-12">
+                                  <div class="mb-3">
+                                    <label
+                                      for="jobDescription"
+                                      class="form-label"
+                                      >Job Description</label
+                                    >
+                                    <textarea
+                                      class="form-control"
+                                      id="jobDescription"
+                                      rows="3"
+                                      placeholder=""
+                                    >
+                                    </textarea>
+                                  </div>
+                                </div>
+                                <!--end col-->
+                                <div class="hstack gap-2 justify-content-end">
+                                  <a
+                                    class="btn btn-success"
+                                    href="javascript:deleteEl(1)"
+                                    >Delete</a
+                                  >
+                                </div>
+                              </div>
+                              <!--end row-->
+                            </div>
+                          </div>
+                          <div id="newForm" style="display: none"></div>
+                          <div class="col-lg-12">
+                            <div class="hstack gap-2">
+                              <button type="submit" class="btn btn-success">
+                                Update
+                              </button>
+                              <a
+                                href="javascript:new_link()"
+                                class="btn btn-primary"
+                                >Add New</a
+                              >
+                            </div>
+                          </div>
+                          <!--end col-->
+                        </form>
+                      </div>
+                      <!--end tab-pane-->
+                      <div class="tab-pane" id="privacy" role="tabpanel">
+                        <div class="mb-4 pb-2">
+                          <h5 class="card-title text-decoration-underline mb-3">
+                            Security:
+                          </h5>
+                          <div
+                            class="d-flex flex-column flex-sm-row mb-4 mb-sm-0"
+                          >
+                            <div class="flex-grow-1">
+                              <h6 class="fs-14 mb-1">
+                                Two-factor Authentication
+                              </h6>
+                              <p class="text-muted">
+                                Two-factor authentication is an enhanced
+                                security meansur. Once enabled, you'll be
+                                required to give two types of identification
+                                when you log into Google Authentication and SMS
+                                are Supported.
+                              </p>
+                            </div>
+                            <div class="flex-shrink-0 ms-sm-3">
+                              <a
+                                href="javascript:void(0);"
+                                class="btn btn-sm btn-primary"
+                                >Enable Two-facor Authentication</a
+                              >
+                            </div>
+                          </div>
+                          <div
+                            class="d-flex flex-column flex-sm-row mb-4 mb-sm-0 mt-2"
+                          >
+                            <div class="flex-grow-1">
+                              <h6 class="fs-14 mb-1">Secondary Verification</h6>
+                              <p class="text-muted">
+                                The first factor is a password and the second
+                                commonly includes a text with a code sent to
+                                your smartphone, or biometrics using your
+                                fingerprint, face, or retina.
+                              </p>
+                            </div>
+                            <div class="flex-shrink-0 ms-sm-3">
+                              <a
+                                href="javascript:void(0);"
+                                class="btn btn-sm btn-primary"
+                                >Set up secondary method</a
+                              >
+                            </div>
+                          </div>
+                          <div
+                            class="d-flex flex-column flex-sm-row mb-4 mb-sm-0 mt-2"
+                          >
+                            <div class="flex-grow-1">
+                              <h6 class="fs-14 mb-1">Backup Codes</h6>
+                              <p class="text-muted mb-sm-0">
+                                A backup code is automatically generated for you
+                                when you turn on two-factor authentication
+                                through your iOS or Android Twitter app. You can
+                                also generate a backup code on twitter.com.
+                              </p>
+                            </div>
+                            <div class="flex-shrink-0 ms-sm-3">
+                              <a
+                                href="javascript:void(0);"
+                                class="btn btn-sm btn-primary"
+                                >Generate backup codes</a
+                              >
+                            </div>
+                          </div>
+                        </div>
+                        <div class="mb-3">
+                          <h5 class="card-title text-decoration-underline mb-3">
+                            Application Notifications:
+                          </h5>
+                          <ul class="list-unstyled mb-0">
+                            <li class="d-flex">
+                              <div class="flex-grow-1">
+                                <label
+                                  for="directMessage"
+                                  class="form-check-label fs-14"
+                                  >Direct messages</label
+                                >
+                                <p class="text-muted">
+                                  Messages from people you follow
+                                </p>
+                              </div>
+                              <div class="flex-shrink-0">
+                                <div class="form-check form-switch">
+                                  <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    role="switch"
+                                    id="directMessage"
+                                    checked=""
+                                  />
+                                </div>
+                              </div>
+                            </li>
+                            <li class="d-flex mt-2">
+                              <div class="flex-grow-1">
+                                <label
+                                  class="form-check-label fs-14"
+                                  for="desktopNotification"
+                                >
+                                  Show desktop notifications
+                                </label>
+                                <p class="text-muted">
+                                  Choose the option you want as your default
+                                  setting. Block a site: Next to "Not allowed to
+                                  send notifications," click Add.
+                                </p>
+                              </div>
+                              <div class="flex-shrink-0">
+                                <div class="form-check form-switch">
+                                  <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    role="switch"
+                                    id="desktopNotification"
+                                    checked=""
+                                  />
+                                </div>
+                              </div>
+                            </li>
+                            <li class="d-flex mt-2">
+                              <div class="flex-grow-1">
+                                <label
+                                  class="form-check-label fs-14"
+                                  for="emailNotification"
+                                >
+                                  Show email notifications
+                                </label>
+                                <p class="text-muted">
+                                  Under Settings, choose Notifications. Under
+                                  Select an account, choose the account to
+                                  enable notifications for.
+                                </p>
+                              </div>
+                              <div class="flex-shrink-0">
+                                <div class="form-check form-switch">
+                                  <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    role="switch"
+                                    id="emailNotification"
+                                  />
+                                </div>
+                              </div>
+                            </li>
+                            <li class="d-flex mt-2">
+                              <div class="flex-grow-1">
+                                <label
+                                  class="form-check-label fs-14"
+                                  for="chatNotification"
+                                >
+                                  Show chat notifications
+                                </label>
+                                <p class="text-muted">
+                                  To prevent duplicate mobile notifications from
+                                  the Gmail and Chat apps, in settings, turn off
+                                  Chat notifications.
+                                </p>
+                              </div>
+                              <div class="flex-shrink-0">
+                                <div class="form-check form-switch">
+                                  <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    role="switch"
+                                    id="chatNotification"
+                                  />
+                                </div>
+                              </div>
+                            </li>
+                            <li class="d-flex mt-2">
+                              <div class="flex-grow-1">
+                                <label
+                                  class="form-check-label fs-14"
+                                  for="purchaesNotification"
+                                >
+                                  Show purchase notifications
+                                </label>
+                                <p class="text-muted">
+                                  Get real-time purchase alerts to protect
+                                  yourself from fraudulent charges.
+                                </p>
+                              </div>
+                              <div class="flex-shrink-0">
+                                <div class="form-check form-switch">
+                                  <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    role="switch"
+                                    id="purchaesNotification"
+                                  />
+                                </div>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                        <div>
+                          <h5 class="card-title text-decoration-underline mb-3">
+                            Delete This Account:
+                          </h5>
+                          <p class="text-muted">
+                            Go to the Data &amp; Privacy section of your profile
+                            Account. Scroll to "Your data &amp; privacy
+                            options." Delete your Profile Account. Follow the
+                            instructions to delete your account :
+                          </p>
+                          <input type="hidden" id="lecturerId" value="<%= lecturer._id %>">
+                          <div>
+                            <input
+                              type="password"
+                              class="form-control"
+                              id="passwordInput"
+                              placeholder=""
+                              value=""
+                              style="max-width: 265px"
+                            />
+                          </div>
+                          <div class="hstack gap-2 mt-3">
+                            <a
+                              href="javascript:void(0);"
+                              class="btn btn-soft-danger"
+                              >Close &amp; Delete This Account</a
+                            >
+                            <a href="javascript:void(0);" class="btn btn-light"
+                              >Cancel</a
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <!--end tab-pane-->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--end col-->
+            </div>
+            <!--end row-->
+          </div>
+          <!-- container-fluid -->
+        </div>
+
+      </div>
+        <!-- end main content-->
+
+    </div>
+    <!-- END layout-wrapper -->
+
+
+
+    <!--start back-to-top-->
+    <button onclick="topFunction()" class="btn btn-danger btn-icon" id="back-to-top">
+        <i class="ri-arrow-up-line"></i>
+    </button>
+    <!--end back-to-top-->
+
+    <!--preloader-->
+    <div id="preloader">
+        <div id="status">
+            <div class="spinner-border text-primary avatar-sm" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
+
+
+
+    <%- include('../partials/scripts.ejs') %>
+
+    <script>
+
+      const handleFormSubmit = () => {
+        // Get the values of the input fields
+    const firstName = document.getElementById('firstName').value;
+    const lastName = document.getElementById('lastName').value;
+    const department = document.getElementById('department').value;
+    const phoneNumber = document.getElementById('phoneNumber').value;
+    const email = document.getElementById('email').value;
+    const title = document.getElementById('title').value;
+    const city = document.getElementById('city').value;
+    const country = document.getElementById('country').value;
+    const bio = document.getElementById('bio').value;
+    const lecturerId = document.getElementById('lecturerId').value;
+    // Get the file inputs
+    // const profilePic = document.getElementById('profilePic').files[0];
+    // const coverPic = document.getElementById('coverPic').files[0];
+
+    // Create an object with the updated lecturer details
+    const updatedLecturer = {
+      firstName: firstName,
+      lastName: lastName,
+      department: department,
+      phoneNumber: phoneNumber,
+      email: email,
+      title: title,
+      city: city,
+      country: country,
+      bio: bio,
+    };
+    
+    // formData.append('pic', profilePic);
+    //formData.append('coverPic', coverPic);
+
+    // Make the AJAX POST request to the server
+    fetch(`/lecturers/${lecturerId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedLecturer), 
+    })
+    .then(response => {
+      if (response.ok) {
+        // Lecturer created successfully, do something (e.g., redirect to a success page)
+        alert('Lecturer details updated successfully!');
+        window.location.href = `/update-lecturer-profile/${lecturerId}`;
+      } else {
+        // Lecturer creation failed, handle the error
+        console.error('Failed to create lecturer');
+      }
+    })
+    .catch(error => {
+      console.error('Failed to create lecturer:', error);
+    });
+      }
+
+       // Add event listener to the submit button
+  document.getElementById('submitBtn').addEventListener('click', handleFormSubmit);
+    </script>
+
+</body>
+
+
+</html>

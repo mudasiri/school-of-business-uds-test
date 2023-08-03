@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
+
+    <%- include('../partials/head.ejs') %>
+
+
+<body>
+
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+        <%- include('../partials/topbar.ejs') %>
+
+        <!-- ========== App Menu ========== -->
+        <%- include('../partials/sidebar.ejs') %>
+        <!-- Left Sidebar End -->
+        <!-- Vertical Overlay-->
+        <div class="vertical-overlay"></div>
+
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+         <div class="main-content">
+
+          <div class="page-content">
+                <div class="container-fluid">
+
+                    <!-- start page title -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                <h4 class="mb-sm-0">Profile List</h4>
+
+                                <div class="page-title-right">
+                                    <ol class="breadcrumb m-0">
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Lecturers</a></li>
+                                        <li class="breadcrumb-item active">Profile</li>
+                                    </ol>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end page title -->
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title mb-0">Add, Edit &amp; Remove</h4>
+                                </div><!-- end card header -->
+
+                                <div class="card-body">
+                                    <div class="listjs-table" id="customerList">
+                                        <div class="row g-4 mb-3">
+                                            <div class="col-sm-auto">
+                                                <div>
+                                                    <a href="/create-lecturer-profile">
+                                                        <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn"><i class="ri-add-line align-bottom me-1"></i> Add Lecturer</button>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm">
+                                                <div class="d-flex justify-content-sm-end">
+                                                    <div class="search-box ms-2">
+                                                        <input type="text" class="form-control search" placeholder="Search...">
+                                                        <i class="ri-search-line search-icon"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="table-responsive table-card mt-3 mb-1">
+                                            <% if (lecturers.length > 0) { %>
+                                            <table class="table align-middle table-nowrap" id="customerTable">
+                                                <thead class="table-light">
+                                                    <tr>
+                                                        <th scope="col" style="width: 50px;">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="checkAll" value="option">
+                                                            </div>
+                                                        </th>
+                                                        <th class="sort" data-sort="customer_name">Lecturer's Name</th>
+                                                        <th class="sort" data-sort="email">Department</th>
+                                                        <th class="sort" data-sort="phone">Phone</th>
+                                                        <th class="sort" data-sort="date">Email</th>
+                                                        <th class="sort" data-sort="action">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="list form-check-all">
+                                                    <% lecturers.forEach((lecturer) => { %>
+                                                    <tr>
+                                                        <th scope="row">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" name="chk_child" value="option1">
+                                                            </div>
+                                                        </th>
+                                                        <td class="id" style="display:none;"><a href="javascript:void(0);" class="fw-medium link-primary">#VZ10</a></td>
+                                                        <td class="customer_name"><%= lecturer.title %> <%= lecturer.firstName %> <%= lecturer.lastName %> </td>
+                                                        <td class="email"><%= lecturer.department %></td>
+                                                        <td class="phone"><%= lecturer.phoneNumber %></td>
+                                                        <td class="date"><%= lecturer.email %></td>
+                                                        <td>
+                                                            <div class="d-flex gap-2">
+                                                                <div class="edit">
+                                                                    <a href="/update-lecturer-profile/<%= lecturer._id %>">
+                                                                        <button class="btn btn-sm btn-success edit-item-btn">Edit</button>
+                                                                    </a>
+                                                                </div>
+                                                                 <div class="edit">
+                                                                   <a href="/lecturer-profile/<%= lecturer._id %>">
+                                                                    <button class="btn btn-sm btn-success edit-item-btn">view</button>
+                                                                   </a>
+                                                                </div>
+                                                                <div class="remove">
+                                                                    <button class="btn btn-sm btn-danger remove-item-btn" data-bs-toggle="modal" data-bs-target="#deleteRecordModal" onclick="confirmAndDelete('<%= lecturer._id %>','<%= lecturer.firstName %>')">Remove</button>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <% }); %>
+                                                </tbody>
+                                            </table>
+                                            <% } else { %>
+                                            <div class="noresult" style="display: none">
+                                                <div class="text-center">
+                                                    <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#121331,secondary:#08a88a" style="width:75px;height:75px"></lord-icon>
+                                                    <h5 class="mt-2">Sorry! No Result Found</h5>
+                                                    <p class="text-muted mb-0">We've searched more than 150+ Orders We did not find any orders for you search.</p>
+                                                </div>
+                                            </div>
+                                            <% } %>
+                                        </div>
+
+                                        <div class="d-flex justify-content-end">
+                                            <div class="pagination-wrap hstack gap-2" style="display: flex;">
+                                                <a class="page-item pagination-prev disabled" href="javascrpit:void(0)">
+                                                    Previous
+                                                </a>
+                                                <ul class="pagination listjs-pagination mb-0"><li class="active"><a class="page" href="#" data-i="1" data-page="8">1</a></li><li><a class="page" href="#" data-i="2" data-page="8">2</a></li></ul>
+                                                <a class="page-item pagination-next" href="javascrpit:void(0)">
+                                                    Next
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- end card -->
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end col -->
+                    </div>
+                    <!-- end row -->
+
+                  
+
+                   
+                  
+                  
+                </div>
+                <!-- container-fluid -->
+            </div>
+            <!-- End Page-content -->
+
+                      	<%- include('../partials/footer.ejs') %>
+
+        </div>
+
+    </div>
+    <!-- END layout-wrapper -->
+
+
+
+    <!--start back-to-top-->
+    <button onclick="topFunction()" class="btn btn-danger btn-icon" id="back-to-top">
+        <i class="ri-arrow-up-line"></i>
+    </button>
+    <!--end back-to-top-->
+
+    <%- include('../partials/scripts.ejs') %>
+
+    <script>
+        function confirmAndDelete(lecturerId, name) {
+    // Ask for user confirmation
+    const confirmDelete = confirm(`Are you sure you want to delete this lecturer ${name}?`);
+
+    // If user confirms, proceed with the deletion
+    if (confirmDelete) {
+      // Make the AJAX DELETE request to delete the lecturer by ID
+      fetch(`/lecturers/${lecturerId}`, {
+        method: 'DELETE',
+      })
+        .then(response => {
+          if (response.ok) {
+            // Lecturer deleted successfully, reload the lecturer list route
+            window.location.href = '/lecturers-profile-list';
+          } else {
+            // Lecturer deletion failed, handle the error
+            console.error('Failed to delete lecturer');
+          }
+        })
+        .catch(error => {
+          console.error('Failed to delete lecturer:', error);
+        });
+    }
+  }
+    </script>
+
+</body>
+
+
+</html>
