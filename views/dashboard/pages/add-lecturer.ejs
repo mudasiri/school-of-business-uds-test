@@ -1,6 +1,15 @@
 
 <!doctype html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
+<!-- jquery -->
+<script src="jquery-3.7.0.min.js"></script>
+<!-- bootstrap -->
+<link rel="stylesheet" href="bootstrap-5/css/bootstrap.min.css">
+<script src="bootstrap-5/js/bootstrap.bundle.min.js"></script>
+
+<!-- summernote -->
+<link rel="stylesheet" href="summernote-0.8.18-dist/summernote-lite.min.css">
+<script src="summernote-0.8.18-dist/summernote-lite.min.js"></script>
 
 
     <%- include('../partials/head.ejs') %>
@@ -585,7 +594,8 @@
                                   class="form-label"
                                   >Description</label
                                 >
-                                <textarea
+                                <div class="summernote"></div>
+                                <!-- <textarea
                                   class="form-control"
                                   id="bio"
                                   placeholder=""
@@ -593,7 +603,7 @@
                                   name="bio"
                               
                                 >
-                            </textarea>
+                            </textarea> -->
                               </div>
                             </div>
                             <!--end col-->
@@ -1712,6 +1722,15 @@
   document.getElementById('submitBtn').addEventListener('click', handleFormSubmit);
     </script>
 
+<script>
+  $('.summernote').summernote({
+    placeholder: 'About you',
+    tabsize: 2,
+    height: 250,
+  
+    
+  });
+</script>
 </body>
 
 
