@@ -326,16 +326,6 @@ router.get("/msc-procurement-and-supply-chain", (req, res) => {
 
 
 
-router.get("/news-details", (req, res) => {
-  res.render("websites/news_details");
-});
-
-router.get("/event-details", (req, res) => {
-  res.render("websites/event_details");
-});
-
-
-
 
 
 

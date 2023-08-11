@@ -46,7 +46,7 @@ app.use((req, res, next) => {
 // use Route created
 app.use(baseRoutes)
 // Start the server
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
 });
