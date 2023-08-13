@@ -18,6 +18,21 @@ router.get('/',(req,res)=>{
     
 })
 
+router.get('/events', (req, res) => {
+  res.render('websites/events');
+});
+
+router.get('/events-details', (req, res) => {
+  res.render('websites/events-details');
+});
+
+router.get('/news', (req, res) => {
+  res.render('websites/news');
+});
+
+router.get('/news-details', (req, res) => {
+  res.render('websites/news-details');
+});
 router.get('/accounting-department',(req,res)=>{
     res.render('websites/accounting_department')
     
@@ -70,12 +85,10 @@ router.get('/about-us',(req,res)=>{
     res.render('websites/about-us') 
 })
 
-router.get("/events", (req, res) => {
-  res.render("websites/events");
-});
 
-router.get("/contact-us", (req, res) => {
-  res.render("websites/contact-us");
+
+router.get('/contact-us', (req, res) => {
+  res.render('websites/contact-us');
 });
 
 //admin pages
