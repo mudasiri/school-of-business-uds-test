@@ -1,0 +1,159 @@
+
+<!doctype html>
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
+
+
+    <%- include('../partials/head.ejs') %>
+
+
+<body>
+    
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+        <%- include('../partials/topbar.ejs') %>
+
+        <%- include('../partials/sidebar.ejs') %>
+          
+
+            <!-- Left Sidebar End -->
+            <!-- Vertical Overlay-->
+            <div class="vertical-overlay"></div>
+
+            <div class="main-content">
+
+                <div class="page-content">
+                    <div class="container-fluid">
+
+                        <!-- row begins -->
+                        <div class="row mt-2">
+                            <div class="col-lg-12">
+                                <div class="card mt-4">
+                                    <div class="card-body p-4">
+                                        <div class="text-center mt-2">
+                                            <h5 class="text-primary">Add Event</h5>
+                                        </div>
+                                        <div class="p-2 mt-4">
+                                <form action="javascript:void(0);">
+                                    <div class="row">
+                                         <!--end col-->
+                                         <div class="col-md-12">
+                                            <div class="mb-3">
+                                                <label for="title" class="form-label">Title</label>
+                                                <input type="text" class="form-control" placeholder="Enter event title" id="title">
+                                            </div>
+                                        </div>
+                                         <!--end col-->
+                                         <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="category" class="form-label">Category</label>
+                                                <input type="text" class="form-control" placeholder="Enter event category" id="category">
+                                            </div>
+                                        </div>
+                                        
+                                        <!--end col-->
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="sdate" class="form-label">Start Date</label>
+                                                <input type="date" class="form-control"  id="sdate">
+                                            </div>
+                                        </div>
+                                        <!--end col-->
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="edate" class="form-label">End Date</label>
+                                                <input type="date" class="form-control"  id="sdate">
+                                            </div>
+                                        </div>
+                                        <!--end col-->
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="time" class="form-label">Time</label>
+                                                <input type="time" class="form-control" placeholder="Enter time" id="sdate">
+                                            </div>
+                                        </div>
+                                        <!--end col-->
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="location" class="form-label">Location</label>
+                                                <input type="text" class="form-control" placeholder="Enter city, country" id="title">
+                                            </div>
+                                        </div>
+                                         <!--end col-->
+                                         <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="tslot" class="form-label">Total slots </label>
+                                                <input type="text" class="form-control" id="tslot" placeholder="Total slots" required>
+                                             </div>
+                                        </div>
+                                         <!--end col-->
+                                         <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="bslot" class="form-label">Booked slots </label>
+                                                <input type="text" class="form-control" id="bslot" placeholder="Booked slots" required>
+                                             </div>
+                                        </div>
+                                         <!--end col-->
+                                         <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="website" class="form-label">Website </label>
+                                                <input type="email" class="form-control" id="category" placeholder="Enter website" required>
+                                             </div>
+                                        </div>
+                                     
+                                        <!--end col-->
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="image" class="form-label">Upload Picture </label>
+                                                <input type="file" class="form-control" id="image" placeholder="upload image" required>
+                                             </div>
+                                        </div>
+                                        <!--end col-->
+                                   <!-- text editor -->
+                                   <div class="mb-3">
+                                    <label>Event description</label>
+                                     <div class="snow-editor" style="height: 200px;">
+    
+                                         <!-- news content -->
+    
+                                     </div> 
+                                     </div>
+                                <!-- text editor end -->
+                                        <div class="col-lg-12">
+                                            <div class="text-end">
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                            </div>
+                                        </div>
+                                        <!--end col-->
+                                    </div>
+                                    <!--end row-->
+                                </form>
+                                </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                      
+                    <!-- end row -->
+                    </div>
+                </div>
+                <!-- page content end -->
+
+                 <!-- Start Footer Area -->
+        <%- include('../partials/footer.ejs') %>
+              
+                </div>
+            </div>    
+         <!-- layout wrapper end -->
+          <!--start back-to-top-->
+    <button
+    onclick="topFunction()"
+    class="btn btn-danger btn-icon"
+    id="back-to-top"
+  >
+    <i class="ri-arrow-up-line"></i>
+  </button>
+  <!--end back-to-top-->
+        <%- include('../partials/scripts.ejs') %>
+ </body>
+ </html>

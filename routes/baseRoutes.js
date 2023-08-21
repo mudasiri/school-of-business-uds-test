@@ -33,6 +33,8 @@ router.get('/news', (req, res) => {
 router.get('/news-details', (req, res) => {
   res.render('websites/news-details');
 });
+
+
 router.get('/accounting-department',(req,res)=>{
     res.render('websites/accounting_department')
     
@@ -114,6 +116,26 @@ router.get('/signup',(req,res)=>{
     
 })
 
+router.get('/add-news',(req,res)=>{
+  res.render('dashboard/pages/add-news')
+  
+})
+
+router.get('/add-event',(req,res)=>{
+  res.render('dashboard/pages/add-event')
+  
+})
+
+router.get('/news-list',(req,res)=>{
+  res.render('dashboard/pages/add-event')
+  
+})
+router.get('/event-list',(req,res)=>{
+  res.render('dashboard/pages/add-event')
+  
+})
+
+
 /*CRUD for Lecturer */
 // Create a new lecturer
 router.post('/lecturers', async (req,res)=>{
@@ -128,7 +150,7 @@ router.post('/lecturers', async (req,res)=>{
 });
 
 // Get all lecturers
-router.get('/lecturers-profile-list', ensureAuthenticated,async (req,res)=>{
+router.get('/', ensureAuthenticated,async (req,res)=>{
   try {
     const lecturers = await lecturerController.getAllLecturers();
     res.render('dashboard/pages/lecturers-profile-list', {lecturers})
