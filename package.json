@@ -1,7 +1,6 @@
 {
   "name": "package.json",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -24,5 +23,15 @@
     "owl.carousel": "^2.3.4",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/henrybaah2016/school-of-business-uds.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/henrybaah2016/school-of-business-uds/issues"
+  },
+  "homepage": "https://github.com/henrybaah2016/school-of-business-uds#readme",
+  "description": ""
 }
