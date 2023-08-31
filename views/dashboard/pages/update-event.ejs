@@ -30,7 +30,7 @@
                                 <div class="card mt-4">
                                     <div class="card-body p-4">
                                         <div class="text-center mt-2">
-                                            <h5 class="text-primary">Add Event</h5>
+                                            <h5 class="text-primary">Update Event: <%= event.eventName %></h5>
                                         </div>
                                         <div class="p-2 mt-4">
                                 
@@ -39,14 +39,15 @@
                                          <div class="col-md-12">
                                             <div class="mb-3">
                                                 <label for="title" class="form-label">Title</label>
-                                                <input type="text" name="eventName" class="form-control" placeholder="Enter event title" id="eventName">
+                                                <input type="text" name="eventName" class="form-control" value="<%= event.eventName %>" placeholder="Enter event title" id="eventName">
+                                                <input type="hidden" id="eventId" value="<%= event._id %>">
                                             </div>
                                         </div>
                                          <!--end col-->
                                          <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="category" class="form-label">Event Category</label>
-                                                <input type="text" name="category" class="form-control" placeholder="Enter event category" id="category">
+                                                <input type="text" name="category" class="form-control" placeholder="Enter event category" value="<%= event.category %>" id="category">
                                             </div>
                                         </div>
                                         
@@ -54,49 +55,49 @@
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="sdate" class="form-label">Start Date</label>
-                                                <input type="date" class="form-control" name="startDate"  id="startDate">
+                                                <input type="date" class="form-control" value="<%= event.startDate %>" name="startDate"  id="startDate">
                                             </div>
                                         </div>
                                         <!--end col-->
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="edate" class="form-label">End Date</label>
-                                                <input type="date" class="form-control" name="endDate"  id="endDate">
+                                                <input type="date" class="form-control" value="<%= event.endDate %>" name="endDate"  id="endDate">
                                             </div>
                                         </div>
                                         <!--end col-->
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="time" class="form-label">Time</label>
-                                                <input type="time" class="form-control" name="time" placeholder="Enter time" id="time">
+                                                <input type="time" class="form-control" name="time" value="<%= event.time %>" placeholder="Enter time" id="time">
                                             </div>
                                         </div>
                                         <!--end col-->
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="location" class="form-label">Location</label>
-                                                <input type="text" class="form-control" placeholder="Enter city, country" id="venue">
+                                                <input type="text" class="form-control" value="<%= event.venue %>" placeholder="Enter city, country" id="venue">
                                             </div>
                                         </div>
                                          <!--end col-->
                                          <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="tslot" class="form-label">Total slots </label>
-                                                <input type="text" class="form-control" id="totalSlots" placeholder="Total slots" >
+                                                <input type="text" class="form-control" id="totalSlots" value="<%= event.totalSlots %>" placeholder="Total slots" >
                                              </div>
                                         </div>
                                          <!--end col-->
                                          <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="bslot" class="form-label">Booked slots </label>
-                                                <input type="text" class="form-control" id="bookedSlots" placeholder="Booked slots" >
+                                                <input type="text" class="form-control" id="bookedSlots" value="<%= event.bookedSlots %>" placeholder="Booked slots" >
                                              </div>
                                         </div>
                                          <!--end col-->
                                          <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="website" class="form-label">Website </label>
-                                                <input type="email" class="form-control" id="website" placeholder="Enter website" >
+                                                <input type="email" class="form-control" id="website" value="<%= event.website %>" placeholder="Enter website" >
                                              </div>
                                         </div>
                                      
@@ -104,7 +105,7 @@
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="image" class="form-label">Upload Picture </label>
-                                                <input type="file" class="form-control" name="image" id="image" placeholder="upload image" >
+                                                <input type="file" class="form-control" name="image" id="image" value="<%= event.image %>" placeholder="upload image" >
                                              </div>
                                         </div>
                                         <!--end col-->
@@ -113,7 +114,7 @@
                                     <label>Event description</label>
                                      <div class="snow-editor" style="height: 200px;">
                                          <!-- news content -->
-                                          <input type="text" name="eventDetails" class="form-control" placeholder="Enter event category" id="eventDetails">
+                                          <input type="text" name="eventDetails" class="form-control" value="<%= event.eventDetails %>" placeholder="Enter event category" id="eventDetails">
     
                                      </div> 
                                      </div>
@@ -158,7 +159,7 @@
 const handleFormSubmit = () => {
 // Prevent the default form submission
     // Get form data
-    const eventData = {
+    const updatedEventData = {
       eventName: document.getElementById("eventName").value,
       eventDetails: document.getElementById("eventDetails").value,
       venue: document.getElementById("venue").value,
@@ -171,27 +172,29 @@ const handleFormSubmit = () => {
       image: '',
       // Retrieve other form fields and their values here
     };
+    const eventId = document.getElementById('eventId').value;
 
-    // Perform an AJAX request to send the form data to the server
-    fetch("/events", {
-      method: "POST",
+    
+    // Make the AJAX POST request to the server
+    fetch(`/events/${eventId}`, {
+      method: 'PUT',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(eventData),
+      body: JSON.stringify(updatedEventData), 
     })
-      .then((response) => {
-        if (response.ok) {
-          // Event added successfully, redirect to the event list page
-          window.location.href = "/event-list"; // Replace with your actual event list page URL
-        } else {
-          // Handle error if needed
-          console.error("Failed to add event");
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+    .then(response => {
+      if (response.ok) {
+        alert('Event details updated successfully!');
+        window.location.href = `/event-list`;
+      } else {
+        // Event update failed, handle the error
+        console.error('Failed to update event');
+      }
+    })
+    .catch(error => {
+      console.error('Failed to update event:', error);
+    });
 }
 
 document.getElementById('submitBtn').addEventListener('click', handleFormSubmit);

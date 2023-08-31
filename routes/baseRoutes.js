@@ -3,6 +3,7 @@ const passport = require('passport');
 const router  = express.Router();
 const User = require('../models/user');
 const lecturerController = require('../controllers/lecturersController');
+const eventController = require('../controllers/eventController');
 
 // Middleware to protect dashboard routes
 const ensureAuthenticated = (req, res, next) => {
@@ -107,6 +108,16 @@ router.get('/update-lecturer-profile/:id',ensureAuthenticated,async (req,res)=>{
   } 
 })
 
+// update event route
+router.get('/update-event/:id',ensureAuthenticated,async (req,res)=>{
+  try {
+    const event = await eventController.getEventById(req,res);
+    res.render('dashboard/pages/update-event', {event})
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to get event' });
+  } 
+})
+
 router.get('/signin',(req,res)=>{
     res.render('dashboard/pages/signin')
     
@@ -121,17 +132,13 @@ router.get('/add-news',(req,res)=>{
   
 })
 
-router.get('/add-event',(req,res)=>{
+router.get('/add-event',ensureAuthenticated,(req,res)=>{
   res.render('dashboard/pages/add-event')
   
 })
 
 router.get('/news-list',(req,res)=>{
-  res.render('dashboard/pages/add-event')
-  
-})
-router.get('/event-list',(req,res)=>{
-  res.render('dashboard/pages/add-event')
+  res.render('dashboard/pages/news-list')
   
 })
 
@@ -143,6 +150,18 @@ router.post('/lecturers', async (req,res)=>{
     const lecturer = await lecturerController.createLecturer(req,res);
     console.log(lecturer);
     res.status(200);
+    res.redirect('/event-list');
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to create lecturer' });
+  }
+});
+
+// Create a new events
+router.post('/events', async (req,res)=>{
+  try {
+    const event = await eventController.createEvent(req,res);
+    console.log(event);
+    res.status(200);
     res.redirect('/lecturers-profile-list');
   } catch (error) {
     res.status(500).json({ error: 'Failed to create lecturer' });
@@ -150,10 +169,20 @@ router.post('/lecturers', async (req,res)=>{
 });
 
 // Get all lecturers
-router.get('/', ensureAuthenticated,async (req,res)=>{
+router.get('/lecturers-profile-list', ensureAuthenticated,async (req,res)=>{
   try {
     const lecturers = await lecturerController.getAllLecturers();
     res.render('dashboard/pages/lecturers-profile-list', {lecturers})
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to get lecturers' });
+  } 
+})
+
+// Get all Events
+router.get('/event-list', ensureAuthenticated,async (req,res)=>{
+  try {
+    const events = await eventController.getAllEvents();
+    res.render('dashboard/pages/event-list', {events})
   } catch (error) {
     res.status(500).json({ error: 'Failed to get lecturers' });
   } 
@@ -175,6 +204,17 @@ router.put('/lecturers/:id', async(req, res) => {
   try {
    await lecturerController.updateLecturerById(req, res);
    res.status(200).json({ message: 'Lecturer deleted successfully' });
+  // res.render(`/lecturer-profile/${req.params.id}`);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to Update lecturer' });
+  }
+});
+
+// Update a Event by ID
+router.put('/events/:id', async(req, res) => {
+  try {
+   await eventController.updateEventById(req, res);
+   res.status(200).json({ message: 'Event deleted successfully' });
   // res.render(`/lecturer-profile/${req.params.id}`);
   } catch (error) {
     res.status(500).json({ error: 'Failed to Update lecturer' });

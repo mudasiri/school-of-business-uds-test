@@ -5,7 +5,7 @@ const createEvent = async (req, res) => {
   try {
     const newEvent = new Event(req.body);
     const savedEvent = await newEvent.save();
-    res.json(savedEvent);
+    return savedEvent;
   } catch (error) {
     res.status(500).json({ error: 'Failed to create event' });
   }
@@ -15,7 +15,7 @@ const createEvent = async (req, res) => {
 const getAllEvents = async (req, res) => {
   try {
     const events = await Event.find();
-    res.json(events);
+    return events;
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch events' });
   }
@@ -29,7 +29,7 @@ const getEventById = async (req, res) => {
     if (!event) {
       return res.status(404).json({ error: 'Event not found' });
     }
-    res.json(event);
+    return event;
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch event' });
   }
