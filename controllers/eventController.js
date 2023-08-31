@@ -57,7 +57,7 @@ const deleteEventById = async (req, res) => {
     if (!deletedEvent) {
       return res.status(404).json({ error: 'Event not found' });
     }
-    res.json({ message: 'Event deleted successfully' });
+    return deletedEvent;
   } catch (error) {
     res.status(500).json({ error: 'Failed to delete event' });
   }

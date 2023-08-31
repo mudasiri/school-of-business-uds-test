@@ -233,6 +233,18 @@ router.delete('/lecturers/:id', async (req, res)=> {
   }
 });
 
+// Delete an event by ID
+router.delete('/events/:id', async (req, res)=> {
+  try {
+    const event = await eventController.deleteEventById(req, res);
+    console.log(event);
+    res.status(200).json({ message: 'event deleted successfully' });
+    //res.redirect('/lecturers-profile-list');
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to Delete event' });
+  }
+});
+
 /*End CRUD for Lecturer */
 
 // handle signup

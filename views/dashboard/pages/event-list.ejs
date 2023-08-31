@@ -161,17 +161,17 @@
 
     // If user confirms, proceed with the deletion
     if (confirmDelete) {
-      // Make the AJAX DELETE request to delete the lecturer by ID
-      fetch(`/lecturers/${lecturerId}`, {
+      // Make the AJAX DELETE request to delete the event by ID
+      fetch(`/events/${lecturerId}`, {
         method: 'DELETE',
       })
         .then(response => {
           if (response.ok) {
-            // Lecturer deleted successfully, reload the lecturer list route
-            window.location.href = '/lecturers-profile-list';
+            // Event deleted successfully, reload the event list route
+            window.location.href = '/event-list';
           } else {
-            // Lecturer deletion failed, handle the error
-            console.error('Failed to delete lecturer');
+            // Event deletion failed, handle the error
+            console.error('Failed to delete event');
           }
         })
         .catch(error => {
