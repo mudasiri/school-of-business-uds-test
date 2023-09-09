@@ -1,8 +1,20 @@
 <!doctype html>
 <html>
+
     <%- include('../partials/head.ejs') %>
+	
 
     <body>
+		<% function formatDate(dateString) { %>
+			<%
+			    const dateObject = new Date(dateString);
+				const options = { day: '2-digit', month: 'short' };
+				const formattedDate = dateObject.toLocaleDateString('en-US', options);
+				console.log(formattedDate); // Output: "06 Sep"
+				return formattedDate;
+			%>
+		  <% } %>
+		  
 		<!-- Start Preloader Area -->
 		<!-- <div class="preloader">
 			<div class="lds-ripple">
@@ -308,46 +320,26 @@
 							<h2>Upcoming events</h2>
 
 							<ul class="events-list">
+								<% events.forEach(event => { %>
 								<li>
 									<div class="events-date">
-										<span class="mb-2">01 May</span>
-										<span>2023</span>
+										<span class="mb-2"><%= formatDate(event.startDate) %></span>
+										<span><%= event.startDate.getFullYear() %></span>
 									</div>
 
-									<span>Conference</span>
+									<span><%= event.category %></span>
 									<h3>
-										<a href="event-details.html">
-											Universities admission conference 2023
-										</a>
+										<a href="/events-details/<%= event._id %>">
+											<%= event.eventName %>	</a>
 									</h3>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+									<p><%= event.eventDetails %></p>
 
-									<a href="event-details.html" class="read-more">
+									<a href="/events-details/<%= event._id %>" class="read-more">
 										Find out more
 										<i class="ri-arrow-right-line"></i>
 									</a>
 								</li>
-
-								<li>
-									<div class="events-date">
-										<span class="mb-2">02 May</span>
-										<span>2023</span>
-									</div>
-
-									<span>Conference</span>
-									<h3>
-										<a href="event-details.html">
-											History and culture open day conference 2023
-										</a>
-									</h3>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-
-									<a href="event-details.html" class="read-more">
-										Find out more
-										<i class="ri-arrow-right-line"></i>
-									</a>
-								</li>
-
+								<% }); %>
 								
 							</ul>
 						</div>
@@ -666,17 +658,12 @@
 			<%- include('../partials/footer.ejs') %>
 
 		<!-- End Footer Area -->
-
-		
-		
 		
 
         <!-- Jquery Min JS -->
         <!-- <script data-cfasync="false" type="text/html" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/jquery.min.js"></script>  -->
         <!-- Bootstrap Bundle Min JS -->
         	<%- include('../partials/scripts.ejs') %>
-
-			
     </body>
 
 </html>

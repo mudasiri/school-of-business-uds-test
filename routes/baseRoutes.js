@@ -4,6 +4,7 @@ const router  = express.Router();
 const User = require('../models/user');
 const lecturerController = require('../controllers/lecturersController');
 const eventController = require('../controllers/eventController');
+const newsController = require('../controllers/newsController');
 
 // Middleware to protect dashboard routes
 const ensureAuthenticated = (req, res, next) => {
@@ -14,17 +15,29 @@ const ensureAuthenticated = (req, res, next) => {
 };
 
 
-router.get('/',(req,res)=>{
-    res.render('websites/index')
+router.get('/', async (req,res)=>{
+  try {
+    // fetch data from db
+const events = await eventController.getRecentEvents();
+const news = await newsController.getRecentNews();
+res.render('websites/index', { events, news })
+  } catch (error) {
     
+  } 
 })
 
 router.get('/events', (req, res) => {
   res.render('websites/events');
 });
 
-router.get('/events-details', (req, res) => {
-  res.render('websites/events-details');
+router.get('/events-details/:id', async(req, res) => {
+  try {
+    const event = await eventController.getEventById(req, res);
+    res.render('websites/events-details', {event});
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to get Events' });
+  }
+  
 });
 
 router.get('/news', (req, res) => {
@@ -74,8 +87,14 @@ router.get('/pscm-department',(req,res)=>{
     res.render('websites/pscm')
     
 })
-router.get('/faculty',(req,res)=>{
-    res.render('websites/hod') 
+router.get('/faculty',async (req,res)=>{
+  try {
+    const lecturers = await lecturerController.getAllLecturers();
+    res.render('websites/hod', {lecturers}) 
+  } catch (error) {
+    
+  }
+    
 })
 router.get('/administrative-staff',(req,res)=>{
   res.render('websites/administrative_staff')

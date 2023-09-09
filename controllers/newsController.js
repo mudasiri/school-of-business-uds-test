@@ -11,6 +11,18 @@ const createNews = async (req, res) => {
   }
 };
 
+// Get All recent News
+
+const getRecentNews = async (req, res) => {
+  try {
+    const news = await News.find().limit(3).sort({ publishedDate: -1 });
+    return news;
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch recent news' });
+
+  }
+}
+
 // Get all news
 const getAllNews = async (req, res) => {
   try {
@@ -65,6 +77,7 @@ const deleteNewsById = async (req, res) => {
 
 module.exports = {
   createNews,
+  getRecentNews,
   getAllNews,
   getNewsById,
   updateNewsById,

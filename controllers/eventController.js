@@ -11,6 +11,16 @@ const createEvent = async (req, res) => {
   }
 };
 
+// Get recent Events
+const getRecentEvents = async (req, res) => {
+  try {
+   const events = await Event.find().limit(3).sort({ startDate: 1 });
+   return events;
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch recent events' });
+  }
+}
+
 // Get all events
 const getAllEvents = async (req, res) => {
   try {
@@ -65,6 +75,7 @@ const deleteEventById = async (req, res) => {
 
 module.exports = {
   createEvent,
+  getRecentEvents,
   getAllEvents,
   getEventById,
   updateEventById,

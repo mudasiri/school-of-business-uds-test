@@ -59,8 +59,8 @@
 				<div class="row">
 					<div class="col-lg-8">
 						<div class="main-default-content mr-15">
-							<span class="top-title">Conference</span>
-							<h2>Universities admission conference 2021</h2>
+							<span class="top-title"><%= event.category %></span>
+							<h2><%= event.eventName %></h2>
 
 							<ul class="date-time">
 								<li>
@@ -73,19 +73,19 @@
 								</li>
 								<li>
 									<i class="ri-map-pin-2-line"></i>
-									Tamale, Ghana
+									<%= event.venue %>
 								</li>
 							</ul>
 
 							<div class="gap-20"></div>
 
-							<img src="../../images/event-img.png" alt="Image">
+							<img src="<%= event.image.replace('public','') %>" alt="Image">
 
 							<div class="gap-20"></div>
 
 							<h3>Event Description</h3>
 
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Donec rutrum congue leo eget malesuada. Curabitur arcu erat, accu msan id imperdiet et, porttitor at sem.</p>
+							<p><%= event.eventDetails %></p>
 
 						</div>
 					</div>
@@ -106,19 +106,19 @@
 									</li>
 									<li>
 										Event Category
-										<span>Conference</span>
+										<span><%= event.category %></span>
 									</li>
 									<li>
 										Location
-										<span>Tamale, Ghana</span>
+										<span><%= event.venue %></span>
 									</li>
 									<li>
 										Total slot
-										<span>100</span>
+										<span><%= event.totalSlots %></span>
 									</li>
 									<li>
 										Booked Slot	
-										<span>0</span>
+										<span>NA</span>
 									</li>
 									<li>
 										Website	
