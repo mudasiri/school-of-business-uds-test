@@ -33,20 +33,20 @@
                                         <h5 class="text-primary">Add News</h5>
                                     </div>
                                     <div class="p-2 mt-4">
-                            <form action="javascript:void(0);">
+                           
                                 <div class="row">
                                       <!--end col-->
                                       <div class="col-md-12">
                                         <div class="mb-3">
-                                            <label for="fullname" class="form-label">Name</label>
-                                            <input type="text" class="form-control" placeholder="Enter your full name" id="fullname">
+                                            <label for="fullname" class="form-label">Published By</label>
+                                            <input type="text" class="form-control" value="Admin" placeholder="Enter your full name" id="fullname">
                                         </div>
                                     </div>
                                     <!--end col-->
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="date" class="form-label">Date</label>
-                                            <input type="date" class="form-control" placeholder="Enter the date" id="date">
+                                            <input type="date" class="form-control" placeholder="Enter the date" id="publishedDate">
                                         </div>
                                     </div>
                                     <!--end col-->
@@ -68,7 +68,7 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="image" class="form-label">Upload Picture </label>
-                                            <input type="file" class="form-control" id="image" placeholder="upload image" required>
+                                            <input type="file" class="form-control" id="featureImage" placeholder="upload image" required>
                                          </div>
                                     </div>
                                     <!--end col-->
@@ -78,19 +78,20 @@
                                  <div class="snow-editor" style="height: 200px;">
 
                                      <!-- news content -->
+                                     <textarea id="details" rows="10" cols="104" placeholder="Enter News Details Here"></textarea>
 
                                  </div> 
                                  </div>
                             <!-- text editor end -->
                                     <div class="col-lg-12">
                                         <div class="text-end">
-                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                            <button type="submit" id="submitBtn" class="btn btn-primary">Submit</button>
                                         </div>
                                     </div>
                                     <!--end col-->
                                 </div>
                                 <!--end row-->
-                            </form>
+                          
                             </div>
                             </div>
                             </div>
@@ -116,6 +117,55 @@
     </button>
     <!--end back-to-top-->
         <%- include('../partials/scripts.ejs') %>
+
+        <script>
+            const handleFormSubmit = () => {
+// Prevent the default form submission
+    // Get form data
+    
+      const title = document.getElementById("title").value;
+      const details = document.getElementById("details").value;
+      const category = document.getElementById("category").value;
+      const publishedDate = document.getElementById("publishedDate").value;
+      // Retrieve other form fields and their values here
+
+    // Get the file inputs
+    const featureImage = document.getElementById('featureImage').files[0];
+    const pd = document.getElementById("publishedDate").value;
+    if(!featureImage || !pd){
+      alert('Featured Image or Dates cannot be empty')  
+    } else {
+    
+    // create form data object to send data
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('details', details);
+    formData.append('category', category);
+    formData.append('publishedDate', publishedDate);
+    formData.append('featureImage', featureImage);
+     // Perform an AJAX request to send the form data to the server
+     fetch("/news", {
+      method: "POST",
+      body: formData
+    })
+      .then((response) => {
+        if (response.ok) {
+          // Event added successfully, redirect to the event list page
+          window.location.href = "/news-list"; // Replace with your actual event list page URL
+        } else {
+          // Handle error if needed
+          console.error("Failed to add news");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+    }
+   
+}
+document.getElementById('submitBtn').addEventListener('click', handleFormSubmit);
+
+        </script>
  </body>
 
 

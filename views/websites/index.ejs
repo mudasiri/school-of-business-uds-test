@@ -10,8 +10,31 @@
 			    const dateObject = new Date(dateString);
 				const options = { day: '2-digit', month: 'short' };
 				const formattedDate = dateObject.toLocaleDateString('en-US', options);
-				console.log(formattedDate); // Output: "06 Sep"
+				
 				return formattedDate;
+			%>
+		  <% } %>
+
+		  <% function shortenTextToTwoLines(text, maxCharactersPerLine = 50) { %>
+			<%
+			const words = text.split(' ');
+  const lines = [];
+  let currentLine = '';
+
+  for (const word of words) {
+    if ((currentLine + ' ' + word).length <= maxCharactersPerLine) {
+      currentLine += (currentLine === '' ? '' : ' ') + word;
+    } else {
+      lines.push(currentLine);
+      currentLine = word;
+    }
+  }
+
+  if (currentLine) {
+    lines.push(currentLine);
+  }
+
+  return lines.slice(0, 2).join('\n');
 			%>
 		  <% } %>
 		  
@@ -332,7 +355,7 @@
 										<a href="/events-details/<%= event._id %>">
 											<%= event.eventName %>	</a>
 									</h3>
-									<p><%= event.eventDetails %></p>
+									<p><%= shortenTextToTwoLines(event.eventDetails)  %></p>
 
 									<a href="/events-details/<%= event._id %>" class="read-more">
 										Find out more
@@ -567,88 +590,39 @@
 		<section class="blog-area pt-100 pb-70">
 			<div class="container">
 				<div class="section-title">
-					<h2>Academic’s news</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt laboredolore magna suspendisse ultrices gravida.</p>
+					<h2>Latest news</h2>
+					<p>Recent news and happenings at the UDS School of Business</p>
 				</div>
 
 				<div class="row justify-content-md-center">
+					<% news.forEach(newsItem => { %>
 					<div class="col-lg-4 col-md-6">
 						<div class="single-blog">
-							<a href="blog-details.html" class="blog-img">
-								<img src="/images/blog/blog-1.png" alt="Image">
-								<span>Academics</span>
+							<a href="/news-details/<%= newsItem._id %>" class="blog-img">
+								<img src="<%= newsItem.featureImage.replace('public','') %>" class="news-img" alt="Image">
+								<span><%= newsItem.category %></span>
 							</a>
 
 							<div class="blog-content">
 								<ul>
 									<li>
 										<i class="ri-calendar-line"></i>
-										<span>26 March, 2023</span>
+										<span><%= formatDate(newsItem.publishedDate)  %>, <%= newsItem.publishedDate.getFullYear() %></span>
 									</li>
 								</ul>
 	
 								<h3>
-									<a href="blog-details.html">
-									Applying to UDS School of Business
+									<a href="/news-details/<%= newsItem._id %>">
+									<%= newsItem.title %>
 									</a>
 								</h3>
 	
-								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam animi dicta ex labore. Ipsum nobis amet nisi voluptate corporis consectetur adipisicing elit alias</p>
+								<p><%= shortenTextToTwoLines(newsItem.details, 100) %></p>
 							</div>
 						</div>
 					</div>
-
-					<div class="col-lg-4 col-md-6">
-						<div class="single-blog">
-							<a href="blog-details.html" class="blog-img">
-								<img src="/images/blog/blog-2.png" alt="Image">
-								<span>Academics</span>
-							</a>
-
-							<div class="blog-content">
-								<ul>
-									<li>
-										<i class="ri-calendar-line"></i>
-										<span>28 March, 2023</span>
-									</li>
-								</ul>
-	
-								<h3>
-									<a href="blog-details.html">
-										What and where choosing to study
-									</a>
-								</h3>
-	
-								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam animi dicta ex labore. Ipsum nobis amet nisi voluptate corporis consectetur adipisicing elit alias</p>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-4 col-md-6">
-						<div class="single-blog">
-							<a href="blog-details.html" class="blog-img">
-								<img src="/images/blog/blog-3.png" alt="Image">
-								<span>Academics</span>
-							</a>
-
-							<div class="blog-content">
-								<ul>
-									<li>
-										<i class="ri-calendar-line"></i>
-										<span>29 March, 2023</span>
-									</li>
-								</ul>
-	
-								<h3>
-									<a href="blog-details.html">
-										A day in the life of a student
-									</a>
-								</h3>
-	
-								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam animi dicta ex labore. Ipsum nobis amet nisi voluptate corporis consectetur adipisicing elit alias</p>
-							</div>
-						</div>
-					</div>
+					<% }); %>
+				
 				</div>
 			</div>
 		</section>

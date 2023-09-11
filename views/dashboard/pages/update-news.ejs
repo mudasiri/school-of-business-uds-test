@@ -1,0 +1,174 @@
+
+<!doctype html>
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
+
+
+    <%- include('../partials/head.ejs') %>
+
+
+<body>
+
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+
+            <%- include('../partials/topbar.ejs') %>
+
+            <%- include('../partials/sidebar.ejs') %>
+
+            <!-- Left Sidebar End -->
+            <!-- Vertical Overlay-->
+            <div class="vertical-overlay"></div>
+
+            <div class="main-content">
+
+               
+            <div class="page-content">
+                <div class="container-fluid">
+
+                    <div class="row mt-2">
+                        <div class="col-lg-12">
+                            <div class="card mt-4">
+                                <div class="card-body p-4">
+                                    <div class="text-center mt-2">
+                                        <h5 class="text-primary">Update News: <%= news.title %></h5>
+                                    </div>
+                                    <div class="p-2 mt-4">
+                           
+                                <div class="row">
+                                      <!--end col-->
+                                      <div class="col-md-12">
+                                        <div class="mb-3">
+                                            <label for="fullname" class="form-label">Published By</label>
+                                            <input type="text" class="form-control" value="Admin" placeholder="Enter your full name" id="fullname">
+                                        </div>
+                                    </div>
+                                    <!--end col-->
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="date" class="form-label">Date</label>
+                                            <input type="date" class="form-control" placeholder="Enter the date" id="publishedDate">
+                                        </div>
+                                    </div>
+                                    <!--end col-->
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="title" class="form-label">Title</label>
+                                            <input type="text" class="form-control" value="<%= news.title %>" placeholder="Enter news title" id="title">
+                                            <input type="hidden" id="newsId" value="<%= news._id %>">
+                                        </div>
+                                    </div>
+                                     <!--end col-->
+                                     <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="category" class="form-label">Category </label>
+                                            <input type="text" class="form-control" value="<%= news.category %>" id="category" placeholder="News category" required>
+                                         </div>
+                                    </div>
+                                 
+                                    <!--end col-->
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="image" class="form-label">Upload Picture </label>
+                                            <input type="file" class="form-control" id="featureImage" placeholder="upload image" required>
+                                         </div>
+                                    </div>
+                                    <!--end col-->
+                               <!-- text editor -->
+                               <div class="mb-3">
+                                <label>News Description</label>
+                                 <div class="snow-editor" style="height: 200px;">
+
+                                     <!-- news content -->
+                                     <textarea id="details" rows="10" cols="104" placeholder="Enter News Details Here"><%= news.details %></textarea>
+
+                                 </div> 
+                                 </div>
+                            <!-- text editor end -->
+                                    <div class="col-lg-12">
+                                        <div class="text-end">
+                                            <button type="submit" id="submitBtn" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </div>
+                                    <!--end col-->
+                                </div>
+                                <!--end row-->
+                          
+                            </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- end row -->
+
+                </div> <!-- container-fluid -->
+            </div>
+            <!-- End Page-content -->
+
+
+                 <!-- Start Footer Area -->
+                <%- include('../partials/footer.ejs') %>
+                </div>
+            </div>    
+         <!-- layout wrapper end -->
+
+         <!--start back-to-top-->
+    <button onclick="topFunction()" class="btn btn-danger btn-icon" id="back-to-top">
+        <i class="ri-arrow-up-line"></i>
+    </button>
+    <!--end back-to-top-->
+        <%- include('../partials/scripts.ejs') %>
+
+        <script>
+            const handleFormSubmit = () => {
+// Prevent the default form submission
+    // Get form data
+    
+      const title = document.getElementById("title").value;
+      const details = document.getElementById("details").value;
+      const category = document.getElementById("category").value;
+      const publishedDate = document.getElementById("publishedDate").value;
+      const newsId = document.getElementById("newsId").value;
+      // Retrieve other form fields and their values here
+
+    // Get the file inputs
+    const featureImage = document.getElementById('featureImage').files[0];
+    const pd = document.getElementById("publishedDate").value;
+    if(!featureImage || !pd){
+      alert('Featured Image or Dates cannot be empty')  
+    } else {
+    
+    // create form data object to send data
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('details', details);
+    formData.append('category', category);
+    formData.append('publishedDate', publishedDate);
+    formData.append('featureImage', featureImage);
+     // Perform an AJAX request to send the form data to the server
+     fetch(`/news/${newsId}`, {
+      method: "PUT",
+      body: formData
+    })
+      .then((response) => {
+        if (response.ok) {
+          // Event added successfully, redirect to the event list page
+          window.location.href = "/news-list"; // Replace with your actual event list page URL
+        } else {
+          // Handle error if needed
+          console.error("Failed to add news");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+    }
+   
+}
+document.getElementById('submitBtn').addEventListener('click', handleFormSubmit);
+
+        </script>
+ </body>
+
+
+ </html>

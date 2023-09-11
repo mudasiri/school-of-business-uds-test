@@ -68,7 +68,7 @@
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="time" class="form-label">Time</label>
-                                                <input type="time" class="form-control" name="time" placeholder="Enter time" id="time">
+                                                <input type="text" class="form-control" name="time" placeholder="Enter time in full  e.g. 10:30pm" id="time">
                                             </div>
                                         </div>
                                         <!--end col-->
@@ -96,7 +96,7 @@
                                          <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="website" class="form-label">Website </label>
-                                                <input type="email" class="form-control" id="website" placeholder="Enter website" >
+                                                <input type="text" class="form-control" id="website" placeholder="Enter website" >
                                              </div>
                                         </div>
                                      
@@ -113,7 +113,7 @@
                                     <label>Event description</label>
                                      <div class="snow-editor" style="height: 200px;">
                                          <!-- news content -->
-                                          <input type="text" name="eventDetails" class="form-control" placeholder="Enter event category" id="eventDetails">
+                                          <textarea  rows="5" cols="100" name="eventDetails" class="form-control" placeholder="Enter event details" id="eventDetails"> </textarea>
     
                                      </div> 
                                      </div>
@@ -158,27 +158,46 @@
 const handleFormSubmit = () => {
 // Prevent the default form submission
     // Get form data
-    const eventData = {
-      eventName: document.getElementById("eventName").value,
-      eventDetails: document.getElementById("eventDetails").value,
-      venue: document.getElementById("venue").value,
-      category: document.getElementById("category").value,
-      time: document.getElementById("time").value,
-      totalSlots: document.getElementById("totalSlots").value,
-      bookedSlots: document.getElementById("bookedSlots").value,
-      startDate: document.getElementById("startDate").value,
-      endDate: document.getElementById("endDate").value,
-      image: '',
+    
+      const eventName = document.getElementById("eventName").value;
+      const eventDetails = document.getElementById("eventDetails").value;
+      const venue = document.getElementById("venue").value;
+      const category = document.getElementById("category").value;
+      const time = document.getElementById("time").value;
+      const totalSlots = document.getElementById("totalSlots").value;
+      const bookedSlots = document.getElementById("bookedSlots").value;
+      const startDate = document.getElementById("startDate").value;
+      const endDate = document.getElementById("endDate").value;
+      const website = document.getElementById("website").value;
+     
       // Retrieve other form fields and their values here
-    };
+  
 
-    // Perform an AJAX request to send the form data to the server
-    fetch("/events", {
+    // Get the file inputs
+    const image = document.getElementById('image').files[0];
+    const sd = document.getElementById("startDate").value;
+const ed = document.getElementById("endDate").value;
+    if(!image || !sd || !ed){
+      alert('Featured Image or Dates cannot be empty')  
+    } else {
+    
+    // create form data object to send data
+    const formData = new FormData();
+    formData.append('eventName', eventName);
+    formData.append('eventDetails', eventDetails);
+    formData.append('venue', venue);
+    formData.append('category', category);
+    formData.append('time', time);
+    formData.append('totalSlots', totalSlots);
+    formData.append('bookedSlots', bookedSlots);
+    formData.append('startDate', startDate);
+    formData.append('endDate', endDate);
+    formData.append('website', website);
+    formData.append('image', image);
+     // Perform an AJAX request to send the form data to the server
+     fetch("/events", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(eventData),
+      body: formData
     })
       .then((response) => {
         if (response.ok) {
@@ -192,6 +211,8 @@ const handleFormSubmit = () => {
       .catch((error) => {
         console.error("Error:", error);
       });
+    }
+   
 }
 
 document.getElementById('submitBtn').addEventListener('click', handleFormSubmit);

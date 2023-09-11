@@ -1,6 +1,15 @@
 <!doctype html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
 
+<% function formatDate(dateString) { %>
+    <%
+        const dateObject = new Date(dateString);
+        const options = { day: '2-digit', month: 'short' };
+        const formattedDate = dateObject.toLocaleDateString('en-US', options);
+       
+        return formattedDate;
+    %>
+  <% } %>
     <%- include('../partials/head.ejs') %>
 
 
@@ -80,7 +89,7 @@
                                                         <td ><%= event.category %></td>
                                                         <td ><%= event.venue %></td>
 
-                                                        <td ><%= event.startDate %></td>
+                                                        <td ><%= formatDate(event.startDate)  %>, <%= event.startDate.getFullYear() %></td>
                                                         <td ><%= event.time %></td>
 
                                                         
@@ -157,7 +166,7 @@
 <script>
          function confirmAndDelete(lecturerId, name) {
     // Ask for user confirmation
-    const confirmDelete = confirm(`Are you sure you want to delete this lecturer ${name}?`);
+    const confirmDelete = confirm(`Are you sure you want to delete this Event: ${name}?`);
 
     // If user confirms, proceed with the deletion
     if (confirmDelete) {

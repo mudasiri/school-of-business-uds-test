@@ -40,6 +40,19 @@ router.get('/events-details/:id', async(req, res) => {
   
 });
 
+router.get('/news-details/:id', async(req, res) => {
+  try {
+    const news = await newsController.getNewsById(req, res);
+    const rnews = await newsController.getRecentNews();
+  res.render('websites/news-details', {news, rnews});
+   // res.render('websites/news-details');
+
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to get News Details' });
+  }
+  
+});
+
 router.get('/news', (req, res) => {
   res.render('websites/news');
 });
@@ -137,6 +150,17 @@ router.get('/update-event/:id',ensureAuthenticated,async (req,res)=>{
   } 
 })
 
+
+// update news route
+router.get('/update-news/:id',ensureAuthenticated,async (req,res)=>{
+  try {
+    const news = await newsController.getNewsById(req,res);
+    res.render('dashboard/pages/update-news', {news})
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to get news' });
+  } 
+})
+
 router.get('/signin',(req,res)=>{
     res.render('dashboard/pages/signin')
     
@@ -146,7 +170,7 @@ router.get('/signup',(req,res)=>{
     
 })
 
-router.get('/add-news',(req,res)=>{
+router.get('/add-news', ensureAuthenticated, (req,res)=>{
   res.render('dashboard/pages/add-news')
   
 })
@@ -156,8 +180,13 @@ router.get('/add-event',ensureAuthenticated,(req,res)=>{
   
 })
 
-router.get('/news-list',(req,res)=>{
-  res.render('dashboard/pages/news-list')
+router.get('/news-list', ensureAuthenticated,async (req,res)=>{
+try {
+  const news = await newsController.getAllNews();
+  res.render('dashboard/pages/news-list', {news})
+} catch (error) {
+  
+}
   
 })
 
@@ -182,6 +211,17 @@ router.post('/events', async (req,res)=>{
     console.log(event);
     res.status(200);
     res.redirect('/lecturers-profile-list');
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to create lecturer' });
+  }
+});
+
+// Create a new news
+router.post('/news', async (req,res)=>{
+  try {
+    const news = await newsController.createNews(req,res);
+    res.status(200);
+    res.redirect('/news-list');
   } catch (error) {
     res.status(500).json({ error: 'Failed to create lecturer' });
   }
@@ -232,14 +272,24 @@ router.put('/lecturers/:id', async(req, res) => {
 // Update a Event by ID
 router.put('/events/:id', async(req, res) => {
   try {
-   await eventController.updateEventById(req, res);
-   res.status(200).json({ message: 'Event deleted successfully' });
+   const event = await eventController.updateEventById(req, res);
+   res.status(200).json({ message: 'Event Updated successfully' });
   // res.render(`/lecturer-profile/${req.params.id}`);
   } catch (error) {
-    res.status(500).json({ error: 'Failed to Update lecturer' });
+    res.status(500).json({ error: 'Failed to Update event' });
   }
 });
 
+// Update a News by ID
+router.put('/news/:id', async(req, res) => {
+  try {
+   const news = await newsController.updateNewsById(req, res);
+   res.status(200).json({ message: 'News Updated successfully' });
+  // res.render(`/lecturer-profile/${req.params.id}`);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to Update news' });
+  }
+});
 // Delete a lecturer by ID
 router.delete('/lecturers/:id', async (req, res)=> {
   try {
@@ -261,6 +311,18 @@ router.delete('/events/:id', async (req, res)=> {
     //res.redirect('/lecturers-profile-list');
   } catch (error) {
     res.status(500).json({ error: 'Failed to Delete event' });
+  }
+});
+
+// Delete a news by ID
+router.delete('/news/:id', async (req, res)=> {
+  try {
+    const news = await newsController.deleteNewsById(req, res);
+    console.log(news);
+    res.status(200).json({ message: 'newsitem deleted successfully' });
+    //res.redirect('/lecturers-profile-list');
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to Delete news' });
   }
 });
 

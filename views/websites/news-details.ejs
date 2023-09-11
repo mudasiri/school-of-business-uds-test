@@ -1,9 +1,18 @@
 <html lang="zxx">
+
 		<%- include('../partials/head.ejs') %>
 
     <body>
 		
-		
+		<% function formatDate(dateString) { %>
+			<%
+			    const dateObject = new Date(dateString);
+				const options = { day: '2-digit', month: 'short' };
+				const formattedDate = dateObject.toLocaleDateString('en-US', options);
+				
+				return formattedDate;
+			%>
+		  <% } %>
 		<!-- Start Header Area -->
 		<%- include('../partials/header.ejs') %>
 
@@ -59,7 +68,7 @@
             <div class="col-lg-8">
                 <div class="blog-details-content mr-15">
                     <div class="blog-details-img">
-                        <img src="../../images/blog/blog-1.png" alt="Image">
+                        <img src="<%= news.featureImage.replace('public','') %>" alt="Image">
                     </div>
 
                     <div class="blog-top-content">
@@ -68,13 +77,13 @@
                                 <li> 
                                     <a href="#">
                                         <i class="ri-user-3-fill"></i>
-                                        Harold McLeod
+                                        Admin
                                     </a>
                                 </li>
 
                                 <li>
                                     <i class="ri-calendar-2-line"></i>
-                                    April 26, 2021
+                                    <%= formatDate(news.publishedDate)  %>, <%= news.publishedDate.getFullYear() %>
                                 </li>
 
                                 <li> 
@@ -85,8 +94,8 @@
                                 </li>
                             </ul>
                             
-                            <h3>How I applied to the university</h3>
-                            <p>Quisque velit nisi, pretium ut lacinia in, elementum id enim. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Donec sollicitudin molestie malesuada. Donec sollicitudin molestie malesuada. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Vivamus magna justo, lacinia eget.</p>
+                            <h3><%= news.title %></h3>
+                            <p><%= news.details %></p>
 
 
                             <div class="gap-mb-20"></div>
@@ -101,24 +110,10 @@
                             </li>
                             <li>
                                 <a href="news.html" target="_blank">
-                                    Academic,
+                                    <%= news.category %>,
                                 </a>
                             </li>
-                            <li>
-                                <a href="news.html" target="_blank">
-                                    University,
-                                </a>
-                            </li>
-                            <li>
-                                <a href="news.html" target="_blank">
-                                    Scholarships,
-                                </a>
-                            </li>
-                            <li>
-                                <a href="news.html" target="_blank">
-                                    Student
-                                </a>
-                            </li>
+                            
                         </ul>
 
                         <div class="share-link">
@@ -150,7 +145,7 @@
                         </div>
                     </div>
 
-                    <ul class="comment">
+                  <!--   <ul class="comment">
                         <li>
                             <img src="../../images/blog-details/comment-1.jpg" alt="Image">
                             <h3>Harold McLeod</h3>
@@ -177,7 +172,7 @@
 
                             <a href="#" class="read-more">Reply</a>
                         </li>
-                    </ul>
+                    </ul> -->
 
                     <div class="leave-reply">
                         <h3>Leave a reply</h3>
@@ -241,27 +236,16 @@
                         <h3 class="widget-title">Latest news</h3>
                         
                         <ul>
+                            <% rnews.forEach(rnewsItem => { %>
                             <li>
-                                <a href="news.html">
-                                    Managing the study of management
-                                    <img src="../../images/blog-details/blog-3.jpg" alt="Image">
+                                <a href="/news-details/<%= rnewsItem._id %>">
+                                    <%= rnewsItem.title %>
+                                    <img src="<%= rnewsItem.featureImage.replace('public','') %>" class="news-thumbnail" alt="Image">
                                 </a>
-                                <span>March 08, 2021</span>
+                                <span><%= formatDate(rnewsItem.publishedDate)  %>, <%= rnewsItem.publishedDate.getFullYear() %></span>
                             </li>
-                            <li>
-                                <a href="news.html">
-                                    Show your appreciation this valentine's day!
-                                    <img src="../../images/blog-details/blog-2.jpg" alt="Image">
-                                </a>
-                                <span>March 11, 2021</span>
-                            </li>
-                            <li>
-                                <a href="news.html">
-                                    Positivity and productivity during COVID-19
-                                    <img src="../../images/blog-details/blog-1.jpg" alt="Image">
-                                </a>
-                                <span>March 10, 2021</span>
-                            </li>
+                            <% }); %>
+                            
                         </ul>
                     </div>
 

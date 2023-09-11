@@ -2035,3 +2035,19 @@ Blog Area Style
           transform: scaleY(1);
 }
 /*# sourceMappingURL=style.css.map */
+
+
+
+/*** custom styles  **/
+.news-img {
+  max-width: 100%;
+  min-height: 450px;
+  object-fit: cover;
+}
+
+.news-thumbnail {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  margin-right: 10px;
+}

@@ -1,8 +1,39 @@
 <html lang="zxx">
 		<%- include('../partials/head.ejs') %>
 
-    <body>
-		
+    <body> 
+		<% function formatDate(dateString) { %>
+			<%
+			    const dateObject = new Date(dateString);
+				const options = { day: '2-digit', month: 'short' };
+				const formattedDate = dateObject.toLocaleDateString('en-US', options);
+				
+				return formattedDate;
+			%>
+		  <% } %>
+
+		  <% function shortenTextToTwoLines(text, maxCharactersPerLine = 50) { %>
+			<%
+			const words = text.split(' ');
+  const lines = [];
+  let currentLine = '';
+
+  for (const word of words) {
+    if ((currentLine + ' ' + word).length <= maxCharactersPerLine) {
+      currentLine += (currentLine === '' ? '' : ' ') + word;
+    } else {
+      lines.push(currentLine);
+      currentLine = word;
+    }
+  }
+
+  if (currentLine) {
+    lines.push(currentLine);
+  }
+
+  return lines.slice(0, 2).join('\n');
+			%>
+		  <% } %>
 		
 		<!-- Start Header Area -->
 		<%- include('../partials/header.ejs') %>
@@ -65,11 +96,11 @@
 							<ul class="date-time">
 								<li>
 									<i class="ri-calendar-2-line"></i>
-									01, May 2021
+									<%= formatDate(event.startDate)  %>, <%= event.startDate.getFullYear() %>
 								</li>
 								<li>
 									<i class="ri-time-line"></i>
-									Friday 3:00PM - 5:00PM
+									<%= event.time %>
 								</li>
 								<li>
 									<i class="ri-map-pin-2-line"></i>
@@ -98,11 +129,11 @@
 								<ul>
 									<li>
 										Start
-										<span>1st May 2021</span>
+										<span><%= formatDate(event.startDate)  %>, <%= event.startDate.getFullYear() %></span>
 									</li>
 									<li>
 										End	
-										<span>1st May 2021</span>
+										<span><%= formatDate(event.endDate)  %>, <%= event.endDate.getFullYear() %></span>
 									</li>
 									<li>
 										Event Category
@@ -122,7 +153,7 @@
 									</li>
 									<li>
 										Website	
-										<a href="index.html">www.unco.com</a>
+										<a href="<%= event.website %>"><%= event.website %></a>
 									</li>
 								</ul>
 							</div>

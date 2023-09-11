@@ -11,6 +11,7 @@ const eventSchema = new mongoose.Schema({
   startDate: { type: Date, required: true },
   endDate: { type: Date, required: true },
   image: { type: String }, 
+  website: { type: String }, 
 });
 
 const Event = mongoose.model('Event', eventSchema);

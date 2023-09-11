@@ -55,21 +55,21 @@
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="sdate" class="form-label">Start Date</label>
-                                                <input type="date" class="form-control" value="<%= event.startDate %>" name="startDate"  id="startDate">
+                                                <input type="date" class="form-control" value="<%= event.startDate %>" name="startDate"  id="startDate" required>
                                             </div>
                                         </div>
                                         <!--end col-->
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="edate" class="form-label">End Date</label>
-                                                <input type="date" class="form-control" value="<%= event.endDate %>" name="endDate"  id="endDate">
+                                                <input type="date" class="form-control" value="<%= event.endDate %>" name="endDate"  id="endDate" required>
                                             </div>
                                         </div>
                                         <!--end col-->
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="time" class="form-label">Time</label>
-                                                <input type="time" class="form-control" name="time" value="<%= event.time %>" placeholder="Enter time" id="time">
+                                                <input type="text" class="form-control" name="time" value="<%= event.time %>" placeholder="Enter time" id="time">
                                             </div>
                                         </div>
                                         <!--end col-->
@@ -97,7 +97,7 @@
                                          <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="website" class="form-label">Website </label>
-                                                <input type="email" class="form-control" id="website" value="<%= event.website %>" placeholder="Enter website" >
+                                                <input type="text" class="form-control" id="website" value="<%= event.website %>" placeholder="Enter website" >
                                              </div>
                                         </div>
                                      
@@ -114,7 +114,7 @@
                                     <label>Event description</label>
                                      <div class="snow-editor" style="height: 200px;">
                                          <!-- news content -->
-                                          <input type="text" name="eventDetails" class="form-control" value="<%= event.eventDetails %>" placeholder="Enter event category" id="eventDetails">
+                                          <textarea rows="5" cols="100" name="eventDetails" class="form-control" placeholder="" id="eventDetails"> <%= event.eventDetails %> </textarea>
     
                                      </div> 
                                      </div>
@@ -158,6 +158,15 @@
         <script>
 const handleFormSubmit = () => {
 // Prevent the default form submission
+const sd = document.getElementById("startDate").value;
+const ed = document.getElementById("endDate").value;
+const eventId = document.getElementById("eventId").value;
+
+if (!sd || !ed){
+    alert('dates can\'t be empty');
+    
+}
+else{
     // Get form data
     const updatedEventData = {
       eventName: document.getElementById("eventName").value,
@@ -169,11 +178,10 @@ const handleFormSubmit = () => {
       bookedSlots: document.getElementById("bookedSlots").value,
       startDate: document.getElementById("startDate").value,
       endDate: document.getElementById("endDate").value,
+      website: document.getElementById("website").value,
       image: '',
       // Retrieve other form fields and their values here
     };
-    const eventId = document.getElementById('eventId').value;
-
     
     // Make the AJAX POST request to the server
     fetch(`/events/${eventId}`, {
@@ -195,6 +203,7 @@ const handleFormSubmit = () => {
     .catch(error => {
       console.error('Failed to update event:', error);
     });
+}
 }
 
 document.getElementById('submitBtn').addEventListener('click', handleFormSubmit);
