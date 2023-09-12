@@ -1691,7 +1691,11 @@
     // Make the AJAX POST request to the server
     fetch('/lecturers', {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
+      headers: {
+                        'Content-Type': 'application/json; charset=UTF-8',
+                        'Host': 'https://*.udssob.com',
+                        'Accept': 'application/json'
+                    },
       body: formData
     })
     .then(response => {
