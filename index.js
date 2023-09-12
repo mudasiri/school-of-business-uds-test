@@ -45,6 +45,10 @@ app.use((req, res, next) => {
 });
 // use Route created
 app.use(baseRoutes)
+
+// Enable CORS for all routes
+app.use(cors());
+
 // Start the server
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
